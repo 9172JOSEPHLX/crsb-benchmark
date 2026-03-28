@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # CRSB Benchmark    Mars 28th, 2026 
 
 # CRSB V1 — Clinical Reasoning Stability Benchmark
@@ -60,3 +61,7 @@ Current version:
 ## License
 
 Apache 2.0
+=======
+# crsb-benchmark
+CRSB V1 is a benchmark for evaluating the stability and reliability of clinical AI reasoning across diagnostic tasks.
+>>>>>>> cbdfa274891d9526750b474b61259cfc8cba95a6
