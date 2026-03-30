@@ -3,6 +3,31 @@
 
 # CRSB V1 — Clinical Reasoning Stability Benchmark
 
+CRSB (Clinical Reasoning Stability Benchmark) is a metacognitive evaluation framework designed to assess how reliably AI systems reason in clinical scenarios.
+
+Unlike traditional benchmarks focused on accuracy, CRSB evaluates **behavioral stability**, including:
+
+- Correctness (item_score)
+- Calibration (confidence vs correctness)
+- Uncertainty handling (deferral vs overconfidence)
+- Belief revision under contradiction
+- Logical audit (error detection vs surface acceptance)
+
+---
+
+## 🚀 Key Idea
+
+CRSB isolates **cognitive abilities** rather than aggregate performance.
+
+It answers questions like:
+- Does the model defer when information is missing?
+- Does it revise its belief when given contradictory evidence?
+- Is its confidence aligned with correctness?
+
+---
+
+## 📂 Project Structure
+
 CRSB V1 is a benchmark for evaluating the stability and reliability of clinical AI reasoning across diagnostic tasks.
 
 It is designed to go beyond raw accuracy by measuring whether models:
