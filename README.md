@@ -1,34 +1,32 @@
-<<<<<<< HEAD
-# CRSB Benchmark    Mars 28th, 2026 
+# CRSB V2 — Clinical Reasoning Stability Benchmark
 
-# CRSB V1 — Clinical Reasoning Stability Benchmark
+CRSB V2 (Clinical Reasoning Stability Benchmark) is a metacognitive evaluation framework for assessing how reliably AI systems reason in clinical diagnostic scenarios.
 
-CRSB (Clinical Reasoning Stability Benchmark) is a metacognitive evaluation framework designed to assess how reliably AI systems reason in clinical scenarios.
+Unlike traditional benchmarks focused primarily on accuracy, CRSB V2 evaluates reasoning stability, including:
 
-Unlike traditional benchmarks focused on accuracy, CRSB evaluates **behavioral stability**, including:
-
-- Correctness (item_score)
+- Correctness (item score)
 - Calibration (confidence vs correctness)
 - Uncertainty handling (deferral vs overconfidence)
 - Belief revision under contradiction
-- Logical audit (error detection vs surface acceptance)
+- Logic audit (error detection vs surface acceptance)
 
 ---
 
-## 🚀 Key Idea
+## Key Idea
 
-CRSB isolates **cognitive abilities** rather than aggregate performance.
+CRSB V2 isolates clinically relevant cognitive and metacognitive abilities rather than relying only on aggregate performance.
 
-It answers questions like:
-- Does the model defer when information is missing?
-- Does it revise its belief when given contradictory evidence?
+It is designed to answer questions such as:
+- Does the model defer when critical information is missing?
+- Does it revise its belief when confronted with contradictory evidence?
 - Is its confidence aligned with correctness?
+- Can it detect reasoning flaws instead of accepting plausible but incorrect conclusions?
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
-CRSB V1 is a benchmark for evaluating the stability and reliability of clinical AI reasoning across diagnostic tasks.
+CRSB V2 is a benchmark-centered framework for evaluating the stability and reliability of clinical AI reasoning across diagnostic tasks.
 
 It is designed to go beyond raw accuracy by measuring whether models:
 - reason correctly,
@@ -37,9 +35,11 @@ It is designed to go beyond raw accuracy by measuring whether models:
 - revise beliefs under contradiction,
 - and detect logical inconsistencies.
 
-## Core task types
+---
 
-CRSB V1 includes four task families:
+## Core Task Types
+
+CRSB V2 includes four task families:
 
 1. **Clean Baseline Reasoning**  
    Standard diagnostic reasoning on structured clinical cases.
@@ -53,40 +53,52 @@ CRSB V1 includes four task families:
 4. **Logic Audit**  
    Identifying flawed reasoning rather than accepting plausible but incorrect conclusions.
 
-## Main evaluation signals
+---
 
-The benchmark reports interpretable metrics including:
+## Main Evaluation Signals
+
+The benchmark reports interpretable signals including:
 - **Item Score**
 - **Calibration Gap**
 - **Failure Modes**
 - **Cognitive Profile / Radar Plot**
 
-## Why this benchmark matters
+Tasks are designed to yield verifiable outcomes and interpretable failure modes, enabling meaningful comparison across systems and model variants.
+
+---
+
+## Why This Benchmark Matters
 
 Many AI systems can produce correct answers while remaining poorly calibrated, overconfident, or unstable under uncertainty.
 
-CRSB V1 is designed to reveal this gap between:
+CRSB V2 is designed to reveal the gap between:
 - **performance**
 - and
 - **metacognitive reliability**
 
-## Project assets
+It is intended not only to profile model behavior, but also to discriminate between systems that may appear similarly accurate on conventional benchmarks.
+
+---
+
+## Project Assets
 
 This project is associated with:
+- a Kaggle Writeup
 - a Kaggle Benchmark
 - a Kaggle Notebook
-- structured benchmark tasks and evaluation code
+- structured benchmark tasks
+- evaluation and analysis code
+
+---
 
 ## Status
 
-Current version:
-- **Task**: `crsb_v1_metacognitive_eval`
-- **Benchmark**: `CRSB V1 — Clinical Reasoning Stability Benchmark`
+Current public-facing project version: **CRSB V2**
+
+Note: some Kaggle benchmark or task asset names may retain earlier labels for continuity during the submission cycle, while the current public writeup and notebook reflect the CRSB V2 framing.
+
+---
 
 ## License
 
 Apache 2.0
-=======
-# crsb-benchmark
-CRSB V1 is a benchmark for evaluating the stability and reliability of clinical AI reasoning across diagnostic tasks.
->>>>>>> cbdfa274891d9526750b474b61259cfc8cba95a6
