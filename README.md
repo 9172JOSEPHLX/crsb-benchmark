@@ -1,225 +1,187 @@
-CRSB V2 — Clinical Reasoning Stability Benchmark
+# 🧠 CRSB V2 — Clinical Reasoning Stability Benchmark
 
-CRSB V2 (Clinical Reasoning Stability Benchmark) is a benchmark-centered evaluation framework designed to measure metacognitive reliability in AI reasoning systems.
+> **A metacognitive benchmark for evaluating reasoning stability beyond accuracy**
 
-While grounded in clinical diagnostic scenarios, CRSB V2 is not intended as a narrow domain benchmark. Its core purpose is to isolate and measure general cognitive and metacognitive faculties that remain difficult to assess with conventional accuracy-driven evaluations.
+---
 
-CRSB V2 focuses on whether a model not only produces a correct answer, but also:
+## 🎯 What is CRSB V2?
 
-calibrates confidence appropriately,
-detects when critical information is missing,
-revises beliefs when confronted with contradiction,
-and identifies flawed reasoning instead of merely accepting plausible surface patterns.
+CRSB V2 is a **benchmark-centered evaluation framework** designed to measure  
+**metacognitive reliability** in AI reasoning systems.
 
-In this sense, CRSB V2 is a metacognitive stress-testing framework: it is designed to reveal behavioral failure modes that standard benchmarks often miss.
+Unlike traditional benchmarks, CRSB V2 does not ask:
 
-Why CRSB V2
+> *“Is the answer correct?”*
 
-Many current AI systems can achieve strong performance on benchmark tasks while remaining:
+It asks:
 
-overconfident when evidence is incomplete,
-unstable under contradiction,
-weak at belief revision,
-or unable to detect reasoning flaws behind plausible conclusions.
+> **“Is the reasoning reliable, calibrated, and stable under stress?”**
 
-Traditional evaluations often compress all of this into a single accuracy score. As a result, two systems may appear similarly strong while differing substantially in reliability, safety, and reasoning stability.
+---
 
-CRSB V2 is designed to expose that gap.
+## ⚠️ The Core Problem
 
-Its central question is:
+Modern AI systems often:
+- achieve high accuracy  
+- appear confident  
+- produce fluent explanations  
 
-What can we learn about model behavior beyond correctness alone?
+👉 **But still fail in critical ways:**
+- ❌ Overconfidence under missing information  
+- ❌ Failure to revise under contradiction  
+- ❌ Acceptance of flawed reasoning  
+- ❌ Instability across similar cases  
 
-More specifically, CRSB V2 helps answer questions such as:
+Traditional benchmarks compress all of this into a **single score**.
 
-Does the model defer when critical information is missing?
-Does it revise its belief when new evidence conflicts with prior assumptions?
-Is its confidence aligned with correctness?
-Can it detect reasoning flaws instead of accepting plausible but incorrect conclusions?
-Key Contribution
+➡️ **CRSB V2 is designed to expose that hidden gap.**
 
-CRSB V2 reveals that a model can remain apparently accurate while still exhibiting metacognitive instability.
+---
 
-In particular, it is designed to surface failure modes that are often invisible in conventional evaluations, including:
+## 🔍 What CRSB V2 Evaluates
 
-correct answers produced with unsafe confidence,
-failure to defer under missing information,
-failure to revise under contradiction,
-and acceptance of superficially plausible but logically flawed reasoning.
+CRSB V2 measures whether a model:
 
-This makes CRSB V2 useful not only for profiling model performance, but also for distinguishing between systems that may look similar under standard benchmarks yet behave very differently under stress.
+- 🎯 **Answers correctly**
+- 📏 **Calibrates confidence appropriately**
+- ⚠️ **Detects missing critical information**
+- 🔄 **Revises beliefs under contradiction**
+- 🧪 **Identifies flawed reasoning**
 
-Cognitive Focus
+---
 
-CRSB V2 is primarily centered on metacognition, while also probing adjacent cognitive faculties in a structured and interpretable way.
+## 🧠 Cognitive Focus
 
-Primary faculty
-Metacognition
-confidence calibration,
-uncertainty handling,
-belief revision,
-logic-aware self-monitoring.
-Secondary or proxy coverage
-Executive functions
-action selection under uncertainty (answer, revise, request_info),
-controlled response adjustment after contradiction.
-Attention
-detection of missing critical information,
-sensitivity to evidence relevance rather than surface plausibility.
-Learning (proxy)
-behavioral adaptation when new evidence invalidates a prior conclusion.
-Social cognition (limited / proxy)
-safe uncertainty communication,
-appropriate deferral rather than overclaiming.
+### Primary Faculty
+- **Metacognition**
+  - Calibration  
+  - Uncertainty handling  
+  - Belief revision  
+  - Logic monitoring  
 
-CRSB V2 therefore contributes to the broader effort of building interpretable cognitive profiles of frontier AI systems, rather than relying on broad static scores alone.
+### Secondary (Proxy) Faculties
+- **Executive Functions** → action selection (`answer / revise / defer`)  
+- **Attention** → detection of missing information  
+- **Learning (proxy)** → adaptation under contradiction  
+- **Social Cognition (proxy)** → safe deferral behavior  
 
-Benchmark Design Principle
+---
 
-CRSB V2 is designed around a simple principle:
+## 🧪 Benchmark Design Principle
 
-Correctness is necessary, but not sufficient.
+> **Correctness is necessary — but not sufficient.**
 
-A robust reasoning system should also:
+A reliable model must also:
+- know when it may be wrong  
+- update its beliefs  
+- avoid unjustified confidence  
+- detect reasoning flaws  
 
-know when it may be wrong,
-update its conclusions when warranted,
-avoid unjustified certainty,
-and expose reasoning flaws rather than conceal them behind fluent outputs.
+---
 
-For that reason, CRSB V2 does not operate as a conventional accuracy benchmark. Instead, it evaluates reasoning stability across controlled task families that isolate specific metacognitive behaviors.
+## 🧩 Core Task Families
 
-Core Task Families
+### 1. 🟢 Clean Baseline Reasoning
+Standard structured clinical cases  
+→ Measures baseline correctness
 
-CRSB V2 includes four main task families:
+---
 
-1. Clean Baseline Reasoning
+### 2. 🟡 Information Gap Recognition
+Incomplete or ambiguous cases  
+→ Tests safe deferral vs guessing
 
-Standard diagnostic reasoning on structured clinical cases.
+---
 
-Purpose:
+### 3. 🔴 Belief Revision Under Contradiction
+Conflicting evidence introduced  
+→ Tests adaptive reasoning
 
-establish baseline item-level correctness,
-measure reasoning under relatively stable conditions.
-2. Information Gap Recognition
+---
 
-Tasks in which critical information is missing or insufficient.
+### 4. 🔵 Logic Audit
+Evaluate reasoning quality  
+→ Tests detection of flawed logic
 
-Purpose:
+---
 
-test whether the model defers appropriately,
-distinguish safe uncertainty handling from unsupported guessing.
-3. Belief Revision Under Contradiction
+## 📊 Evaluation Signals
 
-Tasks in which new evidence conflicts with an earlier plausible conclusion.
+CRSB V2 produces **interpretable outputs**, not just a single score:
 
-Purpose:
+- **Item Score** → correctness  
+- **Calibration Signal** → confidence vs accuracy  
+- **Uncertainty Handling** → safe vs unsafe decisions  
+- **Belief Revision Score** → adaptability  
+- **Logic Audit Score** → reasoning quality  
+- **Failure Modes** → structured weaknesses  
+- **Radar Profile** → cognitive fingerprint  
 
-test whether the model updates its conclusion,
-distinguish genuine revision from stubbornness or superficial consistency.
-4. Logic Audit
+---
 
-Tasks in which the model must evaluate reasoning quality rather than merely produce an answer.
+## 💡 Key Insight
 
-Purpose:
+> A model can be **accurate but unreliable**.
 
-test whether the system detects flawed reasoning,
-distinguish logical monitoring from surface acceptance.
-Main Evaluation Signals
+CRSB V2 reveals:
+- hidden instability under contradiction  
+- unsafe confidence behavior  
+- reasoning flaws masked by fluency  
 
-CRSB V2 reports interpretable signals rather than a single opaque score.
+👉 These are **invisible in standard benchmarks**.
 
-Key outputs include:
+---
 
-Item Score
-Measures task-level correctness.
-Calibration Gap / Calibration Signal
-Measures alignment between confidence and correctness.
-Uncertainty Handling Signal
-Measures whether the model defers appropriately when evidence is insufficient.
-Belief Revision Signal
-Measures whether the model updates conclusions under contradiction.
-Logic Audit Signal
-Measures whether the model detects reasoning flaws rather than accepting plausible but incorrect claims.
-Failure Modes
-Structured identification of model weaknesses.
-Cognitive Profile / Radar Plot
-A compact representation of behavioral strengths and weaknesses across abilities.
+## 🏥 Why Clinical Scenarios?
 
-These outputs are intended to make system comparison more meaningful, more interpretable, and more informative for downstream safety-oriented analysis.
+Clinical reasoning naturally includes:
+- incomplete information  
+- evolving evidence  
+- contradictions  
+- high-stakes decisions  
 
-What CRSB V2 Reveals That Conventional Benchmarks Often Miss
+➡️ Ideal for **metacognitive stress testing**
 
-CRSB V2 is built to expose distinctions that standard evaluations frequently fail to capture.
+⚠️ However:
 
-For example, two models may have similar accuracy while differing sharply in:
+> CRSB V2 targets **general cognitive behavior**, not just healthcare.
 
-confidence discipline,
-contradiction handling,
-deferral behavior,
-and logical self-monitoring.
+---
 
-A model that answers correctly for the wrong reasons, fails to revise when evidence changes, or remains overconfident under ambiguity may still look strong on conventional leaderboards.
+## 🏗️ Project Structure
 
-CRSB V2 is designed to make those differences visible.
+- 📦 Kaggle Benchmark  
+- 📓 Kaggle Notebook  
+- 📝 Writeup  
+- 🧪 Structured tasks  
+- ⚙️ Evaluation pipeline  
 
-Why Clinical Scenarios
+---
 
-Clinical reasoning provides a strong testbed because it naturally contains:
+## 🚀 What Makes CRSB V2 Different?
 
-incomplete information,
-evolving evidence,
-contradictory findings,
-and high-stakes decisions under uncertainty.
+| Traditional Benchmarks | CRSB V2 |
+|----------------------|--------|
+| Accuracy-focused | Reasoning-focused |
+| Static scoring | Behavioral profiling |
+| Single metric | Multi-signal analysis |
+| Surface-level success | Failure-mode detection |
 
-These properties make it possible to probe metacognitive behavior in a rigorous and interpretable way.
+---
 
-However, the broader value of CRSB V2 is not limited to medicine. The benchmark’s underlying design targets general reasoning reliability, and its core logic can inform evaluations in other high-stakes domains where confidence, revision, and safe uncertainty handling matter.
+## 📌 Summary
 
-Project Structure
+CRSB V2 evaluates whether AI systems:
+- reason correctly  
+- calibrate confidence  
+- handle uncertainty safely  
+- revise beliefs  
+- detect logical inconsistencies  
 
-CRSB V2 is a benchmark-centered framework composed of:
+➡️ Moving from **performance measurement**  
+➡️ to **cognitive behavior analysis**
 
-benchmark tasks,
-evaluation and analysis code,
-a Kaggle Benchmark,
-a Kaggle Notebook,
-and a Kaggle Writeup.
+---
 
-It is designed to support:
-
-reproducible model evaluation,
-interpretable cognitive profiling,
-and structured comparison across systems and model variants.
-Project Assets
-
-This project is associated with:
-
-a Kaggle Writeup,
-a Kaggle Benchmark,
-a Kaggle Notebook,
-structured benchmark tasks,
-evaluation and analysis code.
-Status
-
-Current public-facing project version: CRSB V2
-
-Note: some Kaggle benchmark or task asset names may retain earlier labels for continuity during the submission cycle, while the current public writeup and notebook reflect the CRSB V2 framing.
-
-Summary
-
-CRSB V2 is a benchmark for evaluating reasoning stability, not just answer accuracy.
-
-It is designed to measure whether AI systems:
-
-reason correctly,
-calibrate confidence appropriately,
-handle uncertainty safely,
-revise beliefs under contradiction,
-and detect logical inconsistencies.
-
-By doing so, CRSB V2 helps reveal behavioral failure modes that conventional evaluations often overlook, and contributes to the broader goal of building more precise and interpretable cognitive profiles of AI systems.
-
-License
-
+## 📜 License
 Apache 2.0
