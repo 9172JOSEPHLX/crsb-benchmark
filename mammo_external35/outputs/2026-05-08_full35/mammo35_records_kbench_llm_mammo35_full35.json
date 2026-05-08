@@ -1,0 +1,3232 @@
+[
+  {
+    "id": "mammo_ext35_001",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nThe current screening mammogram is incomplete. Additional imaging evaluation with spot compression views and targeted ultrasound is recommended before final assessment.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"incomplete\",\n    \"Additional imaging evaluation\",\n    \"before final assessment\"\n  ],\n  \"brief_rationale\": \"The report explicitly states the examination is incomplete and requires additional imaging for a final assessment.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 0,
+      "answer": "BI-RADS 0",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "incomplete",
+        "Additional imaging evaluation",
+        "before final assessment"
+      ],
+      "brief_rationale": "The report explicitly states the examination is incomplete and requires additional imaging for a final assessment.",
+      "raw_obj": {
+        "answer": "BI-RADS 0",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "incomplete",
+          "Additional imaging evaluation",
+          "before final assessment"
+        ],
+        "brief_rationale": "The report explicitly states the examination is incomplete and requires additional imaging for a final assessment."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"incomplete\",\n    \"Additional imaging evaluation\",\n    \"before final assessment\"\n  ],\n  \"brief_rationale\": \"The report explicitly states the examination is incomplete and requires additional imaging for a final assessment.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_001",
+      "expected_class": 0,
+      "pred_class": 0,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.6666666666666666,
+      "anchor_hits": 2,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.85,
+      "target_ability": "standard_alignment",
+      "failure_mode": "standard_phrase_interpretation",
+      "difficulty": "easy",
+      "confusion_risk": "0_vs_1",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 0",
+      "brief_rationale": "The report explicitly states the examination is incomplete and requires additional imaging for a final assessment.",
+      "rationale_anchor_terms_pred": [
+        "incomplete",
+        "Additional imaging evaluation",
+        "before final assessment"
+      ],
+      "rationale_anchor_terms_expected": [
+        "incomplete",
+        "additional imaging evaluation",
+        "targeted ultrasound"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 0",
+      "birads_class": 0,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "incomplete",
+        "additional imaging evaluation",
+        "targeted ultrasound"
+      ],
+      "expected_lexical_signals": [
+        "incomplete_assessment"
+      ]
+    },
+    "metadata": {
+      "target_ability": "standard_alignment",
+      "failure_mode": "standard_phrase_interpretation",
+      "difficulty": "easy",
+      "confusion_risk": "0_vs_1",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_002",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nScreening exam remains incomplete; addl views and targeted US are needed for final eval. No final category beyond incomplete assessment can be assigned at this stage.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "```json\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"incomplete\", \"addl views\", \"targeted US\"],\n  \"brief_rationale\": \"The report explicitly states the screening exam is incomplete and requires additional imaging for a final assessment.\"\n}\n```",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 0,
+      "answer": "BI-RADS 0",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "incomplete",
+        "addl views",
+        "targeted US"
+      ],
+      "brief_rationale": "The report explicitly states the screening exam is incomplete and requires additional imaging for a final assessment.",
+      "raw_obj": {
+        "answer": "BI-RADS 0",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "incomplete",
+          "addl views",
+          "targeted US"
+        ],
+        "brief_rationale": "The report explicitly states the screening exam is incomplete and requires additional imaging for a final assessment."
+      },
+      "raw": "```json\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"incomplete\", \"addl views\", \"targeted US\"],\n  \"brief_rationale\": \"The report explicitly states the screening exam is incomplete and requires additional imaging for a final assessment.\"\n}\n```",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_002",
+      "expected_class": 0,
+      "pred_class": 0,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 1.0,
+      "anchor_hits": 3,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.9,
+      "target_ability": "surface_stability",
+      "failure_mode": "surface_variation",
+      "difficulty": "easy",
+      "confusion_risk": "0_vs_1",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 0",
+      "brief_rationale": "The report explicitly states the screening exam is incomplete and requires additional imaging for a final assessment.",
+      "rationale_anchor_terms_pred": [
+        "incomplete",
+        "addl views",
+        "targeted US"
+      ],
+      "rationale_anchor_terms_expected": [
+        "incomplete",
+        "addl views",
+        "targeted US"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 0",
+      "birads_class": 0,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "incomplete",
+        "addl views",
+        "targeted US"
+      ],
+      "expected_lexical_signals": [
+        "incomplete_assessment"
+      ]
+    },
+    "metadata": {
+      "target_ability": "surface_stability",
+      "failure_mode": "surface_variation",
+      "difficulty": "easy",
+      "confusion_risk": "0_vs_1",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_003",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nNo definite suspicious mass is identified on the screening images, but evaluation of the retroareolar region is limited. Additional diagnostic views are required for complete assessment.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"evaluation of the retroareolar region is limited\",\n    \"Additional diagnostic views are required\"\n  ],\n  \"brief_rationale\": \"The report explicitly states that evaluation is limited and additional diagnostic views are necessary for a complete assessment.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 0,
+      "answer": "BI-RADS 0",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "evaluation of the retroareolar region is limited",
+        "Additional diagnostic views are required"
+      ],
+      "brief_rationale": "The report explicitly states that evaluation is limited and additional diagnostic views are necessary for a complete assessment.",
+      "raw_obj": {
+        "answer": "BI-RADS 0",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "evaluation of the retroareolar region is limited",
+          "Additional diagnostic views are required"
+        ],
+        "brief_rationale": "The report explicitly states that evaluation is limited and additional diagnostic views are necessary for a complete assessment."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"evaluation of the retroareolar region is limited\",\n    \"Additional diagnostic views are required\"\n  ],\n  \"brief_rationale\": \"The report explicitly states that evaluation is limited and additional diagnostic views are necessary for a complete assessment.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_003",
+      "expected_class": 0,
+      "pred_class": 0,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 1.0,
+      "anchor_hits": 3,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.9,
+      "target_ability": "negation_handling",
+      "failure_mode": "negation_misread",
+      "difficulty": "medium",
+      "confusion_risk": "0_vs_1",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 0",
+      "brief_rationale": "The report explicitly states that evaluation is limited and additional diagnostic views are necessary for a complete assessment.",
+      "rationale_anchor_terms_pred": [
+        "evaluation of the retroareolar region is limited",
+        "Additional diagnostic views are required"
+      ],
+      "rationale_anchor_terms_expected": [
+        "limited",
+        "additional diagnostic views",
+        "complete assessment"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 0",
+      "birads_class": 0,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "limited",
+        "additional diagnostic views",
+        "complete assessment"
+      ],
+      "expected_lexical_signals": [
+        "incomplete_assessment"
+      ]
+    },
+    "metadata": {
+      "target_ability": "negation_handling",
+      "failure_mode": "negation_misread",
+      "difficulty": "medium",
+      "confusion_risk": "0_vs_1",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_004",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nA focal asymmetry is seen on the right MLO view only and is not confirmed on the companion projection. Additional diagnostic mammographic workup is recommended before a final category is assigned.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"focal asymmetry\",\n    \"additional diagnostic mammographic workup\",\n    \"before a final category is assigned\"\n  ],\n  \"brief_rationale\": \"The report explicitly states that additional imaging is required before a final assessment can be made, which defines BI-RADS 0.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 0,
+      "answer": "BI-RADS 0",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "focal asymmetry",
+        "additional diagnostic mammographic workup",
+        "before a final category is assigned"
+      ],
+      "brief_rationale": "The report explicitly states that additional imaging is required before a final assessment can be made, which defines BI-RADS 0.",
+      "raw_obj": {
+        "answer": "BI-RADS 0",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "focal asymmetry",
+          "additional diagnostic mammographic workup",
+          "before a final category is assigned"
+        ],
+        "brief_rationale": "The report explicitly states that additional imaging is required before a final assessment can be made, which defines BI-RADS 0."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"focal asymmetry\",\n    \"additional diagnostic mammographic workup\",\n    \"before a final category is assigned\"\n  ],\n  \"brief_rationale\": \"The report explicitly states that additional imaging is required before a final assessment can be made, which defines BI-RADS 0.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_004",
+      "expected_class": 0,
+      "pred_class": 0,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.3333333333333333,
+      "anchor_hits": 1,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.8,
+      "target_ability": "calibration_boundary_reasoning",
+      "failure_mode": "premature_normalization",
+      "difficulty": "medium",
+      "confusion_risk": "0_vs_1",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 0",
+      "brief_rationale": "The report explicitly states that additional imaging is required before a final assessment can be made, which defines BI-RADS 0.",
+      "rationale_anchor_terms_pred": [
+        "focal asymmetry",
+        "additional diagnostic mammographic workup",
+        "before a final category is assigned"
+      ],
+      "rationale_anchor_terms_expected": [
+        "focal asymmetry",
+        "one view only",
+        "additional diagnostic workup"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 0",
+      "birads_class": 0,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "focal asymmetry",
+        "one view only",
+        "additional diagnostic workup"
+      ],
+      "expected_lexical_signals": [
+        "focal_asymmetry",
+        "incomplete_assessment"
+      ]
+    },
+    "metadata": {
+      "target_ability": "calibration_boundary_reasoning",
+      "failure_mode": "premature_normalization",
+      "difficulty": "medium",
+      "confusion_risk": "0_vs_1",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_005",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nThe breasts are heterogeneously dense, which may obscure small lesions. Prior images are unavailable for comparison, and the questioned upper outer quadrant finding requires targeted ultrasound and diagnostic mammographic views for complete evaluation.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"requires targeted ultrasound\",\n    \"diagnostic mammographic views\",\n    \"complete evaluation\"\n  ],\n  \"brief_rationale\": \"The report explicitly states that additional imaging (ultrasound and diagnostic views) is needed for a complete evaluation of a finding.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 0,
+      "answer": "BI-RADS 0",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "requires targeted ultrasound",
+        "diagnostic mammographic views",
+        "complete evaluation"
+      ],
+      "brief_rationale": "The report explicitly states that additional imaging (ultrasound and diagnostic views) is needed for a complete evaluation of a finding.",
+      "raw_obj": {
+        "answer": "BI-RADS 0",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "requires targeted ultrasound",
+          "diagnostic mammographic views",
+          "complete evaluation"
+        ],
+        "brief_rationale": "The report explicitly states that additional imaging (ultrasound and diagnostic views) is needed for a complete evaluation of a finding."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"requires targeted ultrasound\",\n    \"diagnostic mammographic views\",\n    \"complete evaluation\"\n  ],\n  \"brief_rationale\": \"The report explicitly states that additional imaging (ultrasound and diagnostic views) is needed for a complete evaluation of a finding.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_005",
+      "expected_class": 0,
+      "pred_class": 0,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.3333333333333333,
+      "anchor_hits": 1,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.8,
+      "target_ability": "semantic_density_generalization",
+      "failure_mode": "context_drop",
+      "difficulty": "medium",
+      "confusion_risk": "0_vs_1",
+      "semantic_density": "high",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 0",
+      "brief_rationale": "The report explicitly states that additional imaging (ultrasound and diagnostic views) is needed for a complete evaluation of a finding.",
+      "rationale_anchor_terms_pred": [
+        "requires targeted ultrasound",
+        "diagnostic mammographic views",
+        "complete evaluation"
+      ],
+      "rationale_anchor_terms_expected": [
+        "heterogeneously dense",
+        "prior images unavailable",
+        "complete evaluation"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 0",
+      "birads_class": 0,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "heterogeneously dense",
+        "prior images unavailable",
+        "complete evaluation"
+      ],
+      "expected_lexical_signals": [
+        "incomplete_assessment"
+      ]
+    },
+    "metadata": {
+      "target_ability": "semantic_density_generalization",
+      "failure_mode": "context_drop",
+      "difficulty": "medium",
+      "confusion_risk": "0_vs_1",
+      "semantic_density": "high",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_006",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nNo suspicious mass, suspicious calcifications, or architectural distortion are identified in either breast. Negative examination.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 1\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"Negative examination\", \"No suspicious mass\", \"No suspicious calcifications\"],\n  \"brief_rationale\": \"The report explicitly characterizes the examination as negative and notes the absence of any suspicious findings.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 1,
+      "answer": "BI-RADS 1",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "Negative examination",
+        "No suspicious mass",
+        "No suspicious calcifications"
+      ],
+      "brief_rationale": "The report explicitly characterizes the examination as negative and notes the absence of any suspicious findings.",
+      "raw_obj": {
+        "answer": "BI-RADS 1",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "Negative examination",
+          "No suspicious mass",
+          "No suspicious calcifications"
+        ],
+        "brief_rationale": "The report explicitly characterizes the examination as negative and notes the absence of any suspicious findings."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 1\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"Negative examination\", \"No suspicious mass\", \"No suspicious calcifications\"],\n  \"brief_rationale\": \"The report explicitly characterizes the examination as negative and notes the absence of any suspicious findings.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_006",
+      "expected_class": 1,
+      "pred_class": 1,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "high",
+      "confidence_pred": "high",
+      "confidence_match": 1,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 1.0,
+      "anchor_hits": 3,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 1.0,
+      "target_ability": "standard_alignment",
+      "failure_mode": "normal_case_understanding",
+      "difficulty": "easy",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence",
+      "answer_raw": "BI-RADS 1",
+      "brief_rationale": "The report explicitly characterizes the examination as negative and notes the absence of any suspicious findings.",
+      "rationale_anchor_terms_pred": [
+        "Negative examination",
+        "No suspicious mass",
+        "No suspicious calcifications"
+      ],
+      "rationale_anchor_terms_expected": [
+        "negative examination",
+        "no suspicious mass",
+        "no suspicious calcifications"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 1",
+      "birads_class": 1,
+      "confidence_expected_band": "high",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "negative examination",
+        "no suspicious mass",
+        "no suspicious calcifications"
+      ],
+      "expected_lexical_signals": [
+        "negative_exam"
+      ]
+    },
+    "metadata": {
+      "target_ability": "standard_alignment",
+      "failure_mode": "normal_case_understanding",
+      "difficulty": "easy",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_007",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nNeg mammo. No susp lesion, no interval change, and no worrisome calcific cluster seen on today's study.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "```json\n{\n  \"answer\": \"BI-RADS 1\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"Neg mammo\",\n    \"No susp lesion\",\n    \"no interval change\"\n  ],\n  \"brief_rationale\": \"The report explicitly states the mammogram is negative with no suspicious lesions or worrisome changes identified.\"\n}\n```",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 1,
+      "answer": "BI-RADS 1",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "Neg mammo",
+        "No susp lesion",
+        "no interval change"
+      ],
+      "brief_rationale": "The report explicitly states the mammogram is negative with no suspicious lesions or worrisome changes identified.",
+      "raw_obj": {
+        "answer": "BI-RADS 1",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "Neg mammo",
+          "No susp lesion",
+          "no interval change"
+        ],
+        "brief_rationale": "The report explicitly states the mammogram is negative with no suspicious lesions or worrisome changes identified."
+      },
+      "raw": "```json\n{\n  \"answer\": \"BI-RADS 1\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"Neg mammo\",\n    \"No susp lesion\",\n    \"no interval change\"\n  ],\n  \"brief_rationale\": \"The report explicitly states the mammogram is negative with no suspicious lesions or worrisome changes identified.\"\n}\n```",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_007",
+      "expected_class": 1,
+      "pred_class": 1,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "high",
+      "confidence_pred": "high",
+      "confidence_match": 1,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 1.0,
+      "anchor_hits": 3,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 1.0,
+      "target_ability": "surface_stability",
+      "failure_mode": "surface_variation",
+      "difficulty": "easy",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence",
+      "answer_raw": "BI-RADS 1",
+      "brief_rationale": "The report explicitly states the mammogram is negative with no suspicious lesions or worrisome changes identified.",
+      "rationale_anchor_terms_pred": [
+        "Neg mammo",
+        "No susp lesion",
+        "no interval change"
+      ],
+      "rationale_anchor_terms_expected": [
+        "neg mammo",
+        "no susp lesion",
+        "no interval change"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 1",
+      "birads_class": 1,
+      "confidence_expected_band": "high",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "neg mammo",
+        "no susp lesion",
+        "no interval change"
+      ],
+      "expected_lexical_signals": [
+        "negative_exam"
+      ]
+    },
+    "metadata": {
+      "target_ability": "surface_stability",
+      "failure_mode": "surface_variation",
+      "difficulty": "easy",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_008",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nThere is no suspicious mass, no suspicious architectural distortion, and no suspicious calcification cluster in either breast. This is a negative screening examination.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "```json\n{\n  \"answer\": \"BI-RADS 1\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"negative screening examination\", \"no suspicious mass\", \"no suspicious architectural distortion\"],\n  \"brief_rationale\": \"The report explicitly states this is a negative screening examination with no suspicious findings, which corresponds to BI-RADS 1.\"\n}\n```",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 1,
+      "answer": "BI-RADS 1",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "negative screening examination",
+        "no suspicious mass",
+        "no suspicious architectural distortion"
+      ],
+      "brief_rationale": "The report explicitly states this is a negative screening examination with no suspicious findings, which corresponds to BI-RADS 1.",
+      "raw_obj": {
+        "answer": "BI-RADS 1",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "negative screening examination",
+          "no suspicious mass",
+          "no suspicious architectural distortion"
+        ],
+        "brief_rationale": "The report explicitly states this is a negative screening examination with no suspicious findings, which corresponds to BI-RADS 1."
+      },
+      "raw": "```json\n{\n  \"answer\": \"BI-RADS 1\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"negative screening examination\", \"no suspicious mass\", \"no suspicious architectural distortion\"],\n  \"brief_rationale\": \"The report explicitly states this is a negative screening examination with no suspicious findings, which corresponds to BI-RADS 1.\"\n}\n```",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_008",
+      "expected_class": 1,
+      "pred_class": 1,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "high",
+      "confidence_pred": "high",
+      "confidence_match": 1,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 1.0,
+      "anchor_hits": 3,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 1.0,
+      "target_ability": "negation_handling",
+      "failure_mode": "negation_scope_error",
+      "difficulty": "medium",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence",
+      "answer_raw": "BI-RADS 1",
+      "brief_rationale": "The report explicitly states this is a negative screening examination with no suspicious findings, which corresponds to BI-RADS 1.",
+      "rationale_anchor_terms_pred": [
+        "negative screening examination",
+        "no suspicious mass",
+        "no suspicious architectural distortion"
+      ],
+      "rationale_anchor_terms_expected": [
+        "no suspicious mass",
+        "no suspicious architectural distortion",
+        "negative screening examination"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 1",
+      "birads_class": 1,
+      "confidence_expected_band": "high",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "no suspicious mass",
+        "no suspicious architectural distortion",
+        "negative screening examination"
+      ],
+      "expected_lexical_signals": [
+        "negative_exam"
+      ]
+    },
+    "metadata": {
+      "target_ability": "negation_handling",
+      "failure_mode": "negation_scope_error",
+      "difficulty": "medium",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_009",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nThe breasts are heterogeneously dense, but no focal suspicious abnormality is identified on the current study. No additional concerning interval change is seen.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "```json\n{\n  \"answer\": \"BI-RADS 1\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"no focal suspicious abnormality\", \"no additional concerning interval change\"],\n  \"brief_rationale\": \"The report states that no focal suspicious abnormalities or concerning interval changes were identified, which corresponds to a negative assessment.\"\n}\n```",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 1,
+      "answer": "BI-RADS 1",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "no focal suspicious abnormality",
+        "no additional concerning interval change"
+      ],
+      "brief_rationale": "The report states that no focal suspicious abnormalities or concerning interval changes were identified, which corresponds to a negative assessment.",
+      "raw_obj": {
+        "answer": "BI-RADS 1",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "no focal suspicious abnormality",
+          "no additional concerning interval change"
+        ],
+        "brief_rationale": "The report states that no focal suspicious abnormalities or concerning interval changes were identified, which corresponds to a negative assessment."
+      },
+      "raw": "```json\n{\n  \"answer\": \"BI-RADS 1\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"no focal suspicious abnormality\", \"no additional concerning interval change\"],\n  \"brief_rationale\": \"The report states that no focal suspicious abnormalities or concerning interval changes were identified, which corresponds to a negative assessment.\"\n}\n```",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_009",
+      "expected_class": 1,
+      "pred_class": 1,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.3333333333333333,
+      "anchor_hits": 1,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.8,
+      "target_ability": "calibration_boundary_reasoning",
+      "failure_mode": "density_overcall",
+      "difficulty": "medium",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 1",
+      "brief_rationale": "The report states that no focal suspicious abnormalities or concerning interval changes were identified, which corresponds to a negative assessment.",
+      "rationale_anchor_terms_pred": [
+        "no focal suspicious abnormality",
+        "no additional concerning interval change"
+      ],
+      "rationale_anchor_terms_expected": [
+        "heterogeneously dense",
+        "no focal suspicious abnormality",
+        "no interval change"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 1",
+      "birads_class": 1,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "heterogeneously dense",
+        "no focal suspicious abnormality",
+        "no interval change"
+      ],
+      "expected_lexical_signals": [
+        "negative_exam"
+      ]
+    },
+    "metadata": {
+      "target_ability": "calibration_boundary_reasoning",
+      "failure_mode": "density_overcall",
+      "difficulty": "medium",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_010",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nThe breast parenchyma is heterogeneously dense but stable in overall appearance compared with prior studies. No suspicious interval change, no dominant mass, and no suspicious calcifications are identified.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "```json\n{\n  \"answer\": \"BI-RADS 1\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"no suspicious interval change\",\n    \"no dominant mass\",\n    \"no suspicious calcifications\"\n  ],\n  \"brief_rationale\": \"The report describes a negative examination with no suspicious masses or calcifications and stability compared to prior studies.\"\n}\n```",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 1,
+      "answer": "BI-RADS 1",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "no suspicious interval change",
+        "no dominant mass",
+        "no suspicious calcifications"
+      ],
+      "brief_rationale": "The report describes a negative examination with no suspicious masses or calcifications and stability compared to prior studies.",
+      "raw_obj": {
+        "answer": "BI-RADS 1",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "no suspicious interval change",
+          "no dominant mass",
+          "no suspicious calcifications"
+        ],
+        "brief_rationale": "The report describes a negative examination with no suspicious masses or calcifications and stability compared to prior studies."
+      },
+      "raw": "```json\n{\n  \"answer\": \"BI-RADS 1\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"no suspicious interval change\",\n    \"no dominant mass\",\n    \"no suspicious calcifications\"\n  ],\n  \"brief_rationale\": \"The report describes a negative examination with no suspicious masses or calcifications and stability compared to prior studies.\"\n}\n```",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_010",
+      "expected_class": 1,
+      "pred_class": 1,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "high",
+      "confidence_pred": "high",
+      "confidence_match": 1,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.6666666666666666,
+      "anchor_hits": 2,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.95,
+      "target_ability": "semantic_density_generalization",
+      "failure_mode": "context_noise_overweight",
+      "difficulty": "medium",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "high",
+      "calibration_expectation": "high_confidence",
+      "answer_raw": "BI-RADS 1",
+      "brief_rationale": "The report describes a negative examination with no suspicious masses or calcifications and stability compared to prior studies.",
+      "rationale_anchor_terms_pred": [
+        "no suspicious interval change",
+        "no dominant mass",
+        "no suspicious calcifications"
+      ],
+      "rationale_anchor_terms_expected": [
+        "stable compared with prior studies",
+        "no suspicious interval change",
+        "no dominant mass"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 1",
+      "birads_class": 1,
+      "confidence_expected_band": "high",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "stable compared with prior studies",
+        "no suspicious interval change",
+        "no dominant mass"
+      ],
+      "expected_lexical_signals": [
+        "negative_exam"
+      ]
+    },
+    "metadata": {
+      "target_ability": "semantic_density_generalization",
+      "failure_mode": "context_noise_overweight",
+      "difficulty": "medium",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "high",
+      "calibration_expectation": "high_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_011",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nBenign findings are present, including a simple cyst in the upper outer quadrant of the right breast and scattered benign calcifications. No suspicious abnormality is identified.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "```json\n{\n  \"answer\": \"BI-RADS 2\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"simple cyst\", \"benign calcifications\", \"No suspicious abnormality\"],\n  \"brief_rationale\": \"The report identifies specific benign findings, including a simple cyst and benign calcifications, which characterizes a BI-RADS 2 assessment.\"\n}\n```",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 2,
+      "answer": "BI-RADS 2",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "simple cyst",
+        "benign calcifications",
+        "No suspicious abnormality"
+      ],
+      "brief_rationale": "The report identifies specific benign findings, including a simple cyst and benign calcifications, which characterizes a BI-RADS 2 assessment.",
+      "raw_obj": {
+        "answer": "BI-RADS 2",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "simple cyst",
+          "benign calcifications",
+          "No suspicious abnormality"
+        ],
+        "brief_rationale": "The report identifies specific benign findings, including a simple cyst and benign calcifications, which characterizes a BI-RADS 2 assessment."
+      },
+      "raw": "```json\n{\n  \"answer\": \"BI-RADS 2\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"simple cyst\", \"benign calcifications\", \"No suspicious abnormality\"],\n  \"brief_rationale\": \"The report identifies specific benign findings, including a simple cyst and benign calcifications, which characterizes a BI-RADS 2 assessment.\"\n}\n```",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_011",
+      "expected_class": 2,
+      "pred_class": 2,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "high",
+      "confidence_pred": "high",
+      "confidence_match": 1,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 1.0,
+      "anchor_hits": 3,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 1.0,
+      "target_ability": "standard_alignment",
+      "failure_mode": "benign_signal_understanding",
+      "difficulty": "easy",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence",
+      "answer_raw": "BI-RADS 2",
+      "brief_rationale": "The report identifies specific benign findings, including a simple cyst and benign calcifications, which characterizes a BI-RADS 2 assessment.",
+      "rationale_anchor_terms_pred": [
+        "simple cyst",
+        "benign calcifications",
+        "No suspicious abnormality"
+      ],
+      "rationale_anchor_terms_expected": [
+        "benign findings",
+        "simple cyst",
+        "benign calcifications"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 2",
+      "birads_class": 2,
+      "confidence_expected_band": "high",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "benign findings",
+        "simple cyst",
+        "benign calcifications"
+      ],
+      "expected_lexical_signals": [
+        "simple_cyst",
+        "benign_calcifications"
+      ]
+    },
+    "metadata": {
+      "target_ability": "standard_alignment",
+      "failure_mode": "benign_signal_understanding",
+      "difficulty": "easy",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_012",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nBenign-appearing calcs and a simple cyst are again seen in the right breast. No new suspicious feature is present; overall this remains a benign exam.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 2\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"benign-appearing calcs\",\n    \"simple cyst\",\n    \"benign exam\"\n  ],\n  \"brief_rationale\": \"The report explicitly characterizes the findings as benign and concludes the examination is benign.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 2,
+      "answer": "BI-RADS 2",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "benign-appearing calcs",
+        "simple cyst",
+        "benign exam"
+      ],
+      "brief_rationale": "The report explicitly characterizes the findings as benign and concludes the examination is benign.",
+      "raw_obj": {
+        "answer": "BI-RADS 2",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "benign-appearing calcs",
+          "simple cyst",
+          "benign exam"
+        ],
+        "brief_rationale": "The report explicitly characterizes the findings as benign and concludes the examination is benign."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 2\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"benign-appearing calcs\",\n    \"simple cyst\",\n    \"benign exam\"\n  ],\n  \"brief_rationale\": \"The report explicitly characterizes the findings as benign and concludes the examination is benign.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_012",
+      "expected_class": 2,
+      "pred_class": 2,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "high",
+      "confidence_pred": "high",
+      "confidence_match": 1,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 1.0,
+      "anchor_hits": 3,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 1.0,
+      "target_ability": "surface_stability",
+      "failure_mode": "surface_variation",
+      "difficulty": "easy",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence",
+      "answer_raw": "BI-RADS 2",
+      "brief_rationale": "The report explicitly characterizes the findings as benign and concludes the examination is benign.",
+      "rationale_anchor_terms_pred": [
+        "benign-appearing calcs",
+        "simple cyst",
+        "benign exam"
+      ],
+      "rationale_anchor_terms_expected": [
+        "benign-appearing calcs",
+        "simple cyst",
+        "benign exam"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 2",
+      "birads_class": 2,
+      "confidence_expected_band": "high",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "benign-appearing calcs",
+        "simple cyst",
+        "benign exam"
+      ],
+      "expected_lexical_signals": [
+        "simple_cyst",
+        "benign_calcifications"
+      ]
+    },
+    "metadata": {
+      "target_ability": "surface_stability",
+      "failure_mode": "surface_variation",
+      "difficulty": "easy",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_013",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nNo suspicious mass is identified. Stable benign calcifications and a previously documented simple cyst are again noted, consistent with a benign finding.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 2\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"benign calcifications\",\n    \"simple cyst\",\n    \"benign finding\"\n  ],\n  \"brief_rationale\": \"The report identifies stable calcifications and a known simple cyst, explicitly categorizing them as benign findings.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 2,
+      "answer": "BI-RADS 2",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "benign calcifications",
+        "simple cyst",
+        "benign finding"
+      ],
+      "brief_rationale": "The report identifies stable calcifications and a known simple cyst, explicitly categorizing them as benign findings.",
+      "raw_obj": {
+        "answer": "BI-RADS 2",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "benign calcifications",
+          "simple cyst",
+          "benign finding"
+        ],
+        "brief_rationale": "The report identifies stable calcifications and a known simple cyst, explicitly categorizing them as benign findings."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 2\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"benign calcifications\",\n    \"simple cyst\",\n    \"benign finding\"\n  ],\n  \"brief_rationale\": \"The report identifies stable calcifications and a known simple cyst, explicitly categorizing them as benign findings.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_013",
+      "expected_class": 2,
+      "pred_class": 2,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "high",
+      "confidence_pred": "high",
+      "confidence_match": 1,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.6666666666666666,
+      "anchor_hits": 2,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.95,
+      "target_ability": "negation_handling",
+      "failure_mode": "negation_with_positive_benign_entity",
+      "difficulty": "medium",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence",
+      "answer_raw": "BI-RADS 2",
+      "brief_rationale": "The report identifies stable calcifications and a known simple cyst, explicitly categorizing them as benign findings.",
+      "rationale_anchor_terms_pred": [
+        "benign calcifications",
+        "simple cyst",
+        "benign finding"
+      ],
+      "rationale_anchor_terms_expected": [
+        "stable benign calcifications",
+        "simple cyst",
+        "benign finding"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 2",
+      "birads_class": 2,
+      "confidence_expected_band": "high",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "stable benign calcifications",
+        "simple cyst",
+        "benign finding"
+      ],
+      "expected_lexical_signals": [
+        "simple_cyst",
+        "benign_calcifications",
+        "stable_benign_finding"
+      ]
+    },
+    "metadata": {
+      "target_ability": "negation_handling",
+      "failure_mode": "negation_with_positive_benign_entity",
+      "difficulty": "medium",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_014",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nA small intramammary lymph node with benign morphology is present in the upper outer breast. No suspicious associated feature is seen, and this is considered a benign finding.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 2\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"intramammary lymph node\",\n    \"benign morphology\",\n    \"benign finding\"\n  ],\n  \"brief_rationale\": \"The report explicitly characterizes an intramammary lymph node with benign morphology as a benign finding.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 2,
+      "answer": "BI-RADS 2",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "intramammary lymph node",
+        "benign morphology",
+        "benign finding"
+      ],
+      "brief_rationale": "The report explicitly characterizes an intramammary lymph node with benign morphology as a benign finding.",
+      "raw_obj": {
+        "answer": "BI-RADS 2",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "intramammary lymph node",
+          "benign morphology",
+          "benign finding"
+        ],
+        "brief_rationale": "The report explicitly characterizes an intramammary lymph node with benign morphology as a benign finding."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 2\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"intramammary lymph node\",\n    \"benign morphology\",\n    \"benign finding\"\n  ],\n  \"brief_rationale\": \"The report explicitly characterizes an intramammary lymph node with benign morphology as a benign finding.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_014",
+      "expected_class": 2,
+      "pred_class": 2,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 1.0,
+      "anchor_hits": 3,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.9,
+      "target_ability": "calibration_boundary_reasoning",
+      "failure_mode": "benign_undercall_to_1",
+      "difficulty": "medium",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 2",
+      "brief_rationale": "The report explicitly characterizes an intramammary lymph node with benign morphology as a benign finding.",
+      "rationale_anchor_terms_pred": [
+        "intramammary lymph node",
+        "benign morphology",
+        "benign finding"
+      ],
+      "rationale_anchor_terms_expected": [
+        "intramammary lymph node",
+        "benign morphology",
+        "benign finding"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 2",
+      "birads_class": 2,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "intramammary lymph node",
+        "benign morphology",
+        "benign finding"
+      ],
+      "expected_lexical_signals": [
+        "intramammary_node_benign"
+      ]
+    },
+    "metadata": {
+      "target_ability": "calibration_boundary_reasoning",
+      "failure_mode": "benign_undercall_to_1",
+      "difficulty": "medium",
+      "confusion_risk": "1_vs_2",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_015",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nA biopsy clip is present at the prior benign biopsy site, with stable adjacent benign post-procedural change. Imaging-pathology findings were previously concordant for a benign process, and no suspicious new abnormality is identified.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 2\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"prior benign biopsy site\",\n    \"stable adjacent benign post-procedural change\",\n    \"no suspicious new abnormality\"\n  ],\n  \"brief_rationale\": \"The findings describe stable, benign post-procedural changes and a biopsy clip from a previously confirmed benign site with no new abnormalities.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 2,
+      "answer": "BI-RADS 2",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "prior benign biopsy site",
+        "stable adjacent benign post-procedural change",
+        "no suspicious new abnormality"
+      ],
+      "brief_rationale": "The findings describe stable, benign post-procedural changes and a biopsy clip from a previously confirmed benign site with no new abnormalities.",
+      "raw_obj": {
+        "answer": "BI-RADS 2",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "prior benign biopsy site",
+          "stable adjacent benign post-procedural change",
+          "no suspicious new abnormality"
+        ],
+        "brief_rationale": "The findings describe stable, benign post-procedural changes and a biopsy clip from a previously confirmed benign site with no new abnormalities."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 2\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"prior benign biopsy site\",\n    \"stable adjacent benign post-procedural change\",\n    \"no suspicious new abnormality\"\n  ],\n  \"brief_rationale\": \"The findings describe stable, benign post-procedural changes and a biopsy clip from a previously confirmed benign site with no new abnormalities.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_015",
+      "expected_class": 2,
+      "pred_class": 2,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.6666666666666666,
+      "anchor_hits": 2,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.85,
+      "target_ability": "semantic_density_generalization",
+      "failure_mode": "history_misread",
+      "difficulty": "medium",
+      "confusion_risk": "2_vs_3",
+      "semantic_density": "high",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 2",
+      "brief_rationale": "The findings describe stable, benign post-procedural changes and a biopsy clip from a previously confirmed benign site with no new abnormalities.",
+      "rationale_anchor_terms_pred": [
+        "prior benign biopsy site",
+        "stable adjacent benign post-procedural change",
+        "no suspicious new abnormality"
+      ],
+      "rationale_anchor_terms_expected": [
+        "biopsy clip",
+        "benign post-procedural change",
+        "benign process"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 2",
+      "birads_class": 2,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "biopsy clip",
+        "benign post-procedural change",
+        "benign process"
+      ],
+      "expected_lexical_signals": [
+        "benign_postprocedural_change"
+      ]
+    },
+    "metadata": {
+      "target_ability": "semantic_density_generalization",
+      "failure_mode": "history_misread",
+      "difficulty": "medium",
+      "confusion_risk": "2_vs_3",
+      "semantic_density": "high",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_016",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nA probably benign oval circumscribed mass is present in the left breast. Short-interval follow-up in 6 months is recommended.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 3\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"probably benign\",\n    \"Short-interval follow-up\",\n    \"6 months\"\n  ],\n  \"brief_rationale\": \"The findings are explicitly described as probably benign with a recommendation for a 6-month follow-up, which defines BI-RADS 3.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 3,
+      "answer": "BI-RADS 3",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "probably benign",
+        "Short-interval follow-up",
+        "6 months"
+      ],
+      "brief_rationale": "The findings are explicitly described as probably benign with a recommendation for a 6-month follow-up, which defines BI-RADS 3.",
+      "raw_obj": {
+        "answer": "BI-RADS 3",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "probably benign",
+          "Short-interval follow-up",
+          "6 months"
+        ],
+        "brief_rationale": "The findings are explicitly described as probably benign with a recommendation for a 6-month follow-up, which defines BI-RADS 3."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 3\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"probably benign\",\n    \"Short-interval follow-up\",\n    \"6 months\"\n  ],\n  \"brief_rationale\": \"The findings are explicitly described as probably benign with a recommendation for a 6-month follow-up, which defines BI-RADS 3.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_016",
+      "expected_class": 3,
+      "pred_class": 3,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.6666666666666666,
+      "anchor_hits": 2,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.85,
+      "target_ability": "standard_alignment",
+      "failure_mode": "followup_phrase_interpretation",
+      "difficulty": "medium",
+      "confusion_risk": "2_vs_3",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 3",
+      "brief_rationale": "The findings are explicitly described as probably benign with a recommendation for a 6-month follow-up, which defines BI-RADS 3.",
+      "rationale_anchor_terms_pred": [
+        "probably benign",
+        "Short-interval follow-up",
+        "6 months"
+      ],
+      "rationale_anchor_terms_expected": [
+        "probably benign",
+        "oval circumscribed mass",
+        "6 months"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 3",
+      "birads_class": 3,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "probably benign",
+        "oval circumscribed mass",
+        "6 months"
+      ],
+      "expected_lexical_signals": [
+        "probably_benign",
+        "oval_circumscribed_mass",
+        "short_interval_followup"
+      ]
+    },
+    "metadata": {
+      "target_ability": "standard_alignment",
+      "failure_mode": "followup_phrase_interpretation",
+      "difficulty": "medium",
+      "confusion_risk": "2_vs_3",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_017",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nLikely benign small oval lesion, circumscribed, in the left breast. Prob benign appearance; 6 mo f/u advised.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 3\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"Prob benign appearance\",\n    \"6 mo f/u advised\"\n  ],\n  \"brief_rationale\": \"The report describes a probably benign lesion and recommends a 6-month follow-up, which is the standard management for BI-RADS 3.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 3,
+      "answer": "BI-RADS 3",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "Prob benign appearance",
+        "6 mo f/u advised"
+      ],
+      "brief_rationale": "The report describes a probably benign lesion and recommends a 6-month follow-up, which is the standard management for BI-RADS 3.",
+      "raw_obj": {
+        "answer": "BI-RADS 3",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "Prob benign appearance",
+          "6 mo f/u advised"
+        ],
+        "brief_rationale": "The report describes a probably benign lesion and recommends a 6-month follow-up, which is the standard management for BI-RADS 3."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 3\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"Prob benign appearance\",\n    \"6 mo f/u advised\"\n  ],\n  \"brief_rationale\": \"The report describes a probably benign lesion and recommends a 6-month follow-up, which is the standard management for BI-RADS 3.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_017",
+      "expected_class": 3,
+      "pred_class": 3,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.6666666666666666,
+      "anchor_hits": 2,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.85,
+      "target_ability": "surface_stability",
+      "failure_mode": "surface_variation",
+      "difficulty": "medium",
+      "confusion_risk": "2_vs_3",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 3",
+      "brief_rationale": "The report describes a probably benign lesion and recommends a 6-month follow-up, which is the standard management for BI-RADS 3.",
+      "rationale_anchor_terms_pred": [
+        "Prob benign appearance",
+        "6 mo f/u advised"
+      ],
+      "rationale_anchor_terms_expected": [
+        "likely benign",
+        "prob benign appearance",
+        "6 mo f/u"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 3",
+      "birads_class": 3,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "likely benign",
+        "prob benign appearance",
+        "6 mo f/u"
+      ],
+      "expected_lexical_signals": [
+        "probably_benign",
+        "oval_circumscribed_mass",
+        "short_interval_followup"
+      ]
+    },
+    "metadata": {
+      "target_ability": "surface_stability",
+      "failure_mode": "surface_variation",
+      "difficulty": "medium",
+      "confusion_risk": "2_vs_3",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_018",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nNo suspicious calcifications are seen. A probably benign focal asymmetry persists without aggressive features, and short-interval follow-up is recommended.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 3\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"probably benign\",\n    \"short-interval follow-up\"\n  ],\n  \"brief_rationale\": \"The report explicitly describes a finding as probably benign and recommends short-interval follow-up, which are the criteria for BI-RADS 3.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 3,
+      "answer": "BI-RADS 3",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "probably benign",
+        "short-interval follow-up"
+      ],
+      "brief_rationale": "The report explicitly describes a finding as probably benign and recommends short-interval follow-up, which are the criteria for BI-RADS 3.",
+      "raw_obj": {
+        "answer": "BI-RADS 3",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "probably benign",
+          "short-interval follow-up"
+        ],
+        "brief_rationale": "The report explicitly describes a finding as probably benign and recommends short-interval follow-up, which are the criteria for BI-RADS 3."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 3\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"probably benign\",\n    \"short-interval follow-up\"\n  ],\n  \"brief_rationale\": \"The report explicitly describes a finding as probably benign and recommends short-interval follow-up, which are the criteria for BI-RADS 3.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_018",
+      "expected_class": 3,
+      "pred_class": 3,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.3333333333333333,
+      "anchor_hits": 1,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.8,
+      "target_ability": "negation_handling",
+      "failure_mode": "negation_false_normalization",
+      "difficulty": "medium",
+      "confusion_risk": "2_vs_3",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 3",
+      "brief_rationale": "The report explicitly describes a finding as probably benign and recommends short-interval follow-up, which are the criteria for BI-RADS 3.",
+      "rationale_anchor_terms_pred": [
+        "probably benign",
+        "short-interval follow-up"
+      ],
+      "rationale_anchor_terms_expected": [
+        "probably benign focal asymmetry",
+        "no suspicious calcifications",
+        "short-interval follow-up"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 3",
+      "birads_class": 3,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "probably benign focal asymmetry",
+        "no suspicious calcifications",
+        "short-interval follow-up"
+      ],
+      "expected_lexical_signals": [
+        "probably_benign",
+        "focal_asymmetry",
+        "short_interval_followup"
+      ]
+    },
+    "metadata": {
+      "target_ability": "negation_handling",
+      "failure_mode": "negation_false_normalization",
+      "difficulty": "medium",
+      "confusion_risk": "2_vs_3",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_019",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nA stable focal asymmetry is again seen and is favored to be likely benign. Six-month follow-up is advised to document continued stability.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 3\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"likely benign\",\n    \"Six-month follow-up\"\n  ],\n  \"brief_rationale\": \"The assessment identifies the finding as likely benign and recommends a short-interval six-month follow-up, which is the definition of BI-RADS 3.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 3,
+      "answer": "BI-RADS 3",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "likely benign",
+        "Six-month follow-up"
+      ],
+      "brief_rationale": "The assessment identifies the finding as likely benign and recommends a short-interval six-month follow-up, which is the definition of BI-RADS 3.",
+      "raw_obj": {
+        "answer": "BI-RADS 3",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "likely benign",
+          "Six-month follow-up"
+        ],
+        "brief_rationale": "The assessment identifies the finding as likely benign and recommends a short-interval six-month follow-up, which is the definition of BI-RADS 3."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 3\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"likely benign\",\n    \"Six-month follow-up\"\n  ],\n  \"brief_rationale\": \"The assessment identifies the finding as likely benign and recommends a short-interval six-month follow-up, which is the definition of BI-RADS 3.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_019",
+      "expected_class": 3,
+      "pred_class": 3,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.6666666666666666,
+      "anchor_hits": 2,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.85,
+      "target_ability": "calibration_boundary_reasoning",
+      "failure_mode": "boundary_underestimation",
+      "difficulty": "medium",
+      "confusion_risk": "2_vs_3",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 3",
+      "brief_rationale": "The assessment identifies the finding as likely benign and recommends a short-interval six-month follow-up, which is the definition of BI-RADS 3.",
+      "rationale_anchor_terms_pred": [
+        "likely benign",
+        "Six-month follow-up"
+      ],
+      "rationale_anchor_terms_expected": [
+        "stable focal asymmetry",
+        "likely benign",
+        "six-month follow-up"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 3",
+      "birads_class": 3,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "stable focal asymmetry",
+        "likely benign",
+        "six-month follow-up"
+      ],
+      "expected_lexical_signals": [
+        "focal_asymmetry",
+        "stable_benign_finding",
+        "probably_benign",
+        "short_interval_followup"
+      ]
+    },
+    "metadata": {
+      "target_ability": "calibration_boundary_reasoning",
+      "failure_mode": "boundary_underestimation",
+      "difficulty": "medium",
+      "confusion_risk": "2_vs_3",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_020",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nA small oval circumscribed mass remains unchanged from the prior examination and is favored to be probably benign. Short-interval follow-up imaging in 6 months is recommended.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 3\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"probably benign\",\n    \"Short-interval follow-up imaging in 6 months\"\n  ],\n  \"brief_rationale\": \"The report explicitly states the mass is favored to be probably benign and recommends 6-month follow-up imaging, which defines BI-RADS 3.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 3,
+      "answer": "BI-RADS 3",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "probably benign",
+        "Short-interval follow-up imaging in 6 months"
+      ],
+      "brief_rationale": "The report explicitly states the mass is favored to be probably benign and recommends 6-month follow-up imaging, which defines BI-RADS 3.",
+      "raw_obj": {
+        "answer": "BI-RADS 3",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "probably benign",
+          "Short-interval follow-up imaging in 6 months"
+        ],
+        "brief_rationale": "The report explicitly states the mass is favored to be probably benign and recommends 6-month follow-up imaging, which defines BI-RADS 3."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 3\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"probably benign\",\n    \"Short-interval follow-up imaging in 6 months\"\n  ],\n  \"brief_rationale\": \"The report explicitly states the mass is favored to be probably benign and recommends 6-month follow-up imaging, which defines BI-RADS 3.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_020",
+      "expected_class": 3,
+      "pred_class": 3,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.6666666666666666,
+      "anchor_hits": 2,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.85,
+      "target_ability": "semantic_density_generalization",
+      "failure_mode": "history_followup_drop",
+      "difficulty": "medium",
+      "confusion_risk": "3_vs_4",
+      "semantic_density": "high",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 3",
+      "brief_rationale": "The report explicitly states the mass is favored to be probably benign and recommends 6-month follow-up imaging, which defines BI-RADS 3.",
+      "rationale_anchor_terms_pred": [
+        "probably benign",
+        "Short-interval follow-up imaging in 6 months"
+      ],
+      "rationale_anchor_terms_expected": [
+        "unchanged from the prior examination",
+        "probably benign",
+        "6 months"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 3",
+      "birads_class": 3,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "unchanged from the prior examination",
+        "probably benign",
+        "6 months"
+      ],
+      "expected_lexical_signals": [
+        "oval_circumscribed_mass",
+        "stable_benign_finding",
+        "probably_benign",
+        "short_interval_followup"
+      ]
+    },
+    "metadata": {
+      "target_ability": "semantic_density_generalization",
+      "failure_mode": "history_followup_drop",
+      "difficulty": "medium",
+      "confusion_risk": "3_vs_4",
+      "semantic_density": "high",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_021",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nThere is a suspicious irregular mass in the upper outer left breast. Tissue diagnosis should be considered.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "```json\n{\n  \"answer\": \"BI-RADS 4\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"suspicious irregular mass\", \"tissue diagnosis\"],\n  \"brief_rationale\": \"The report describes a suspicious irregular mass and recommends tissue diagnosis, which corresponds to the BI-RADS 4 classification.\"\n}\n```",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 4,
+      "answer": "BI-RADS 4",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "suspicious irregular mass",
+        "tissue diagnosis"
+      ],
+      "brief_rationale": "The report describes a suspicious irregular mass and recommends tissue diagnosis, which corresponds to the BI-RADS 4 classification.",
+      "raw_obj": {
+        "answer": "BI-RADS 4",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "suspicious irregular mass",
+          "tissue diagnosis"
+        ],
+        "brief_rationale": "The report describes a suspicious irregular mass and recommends tissue diagnosis, which corresponds to the BI-RADS 4 classification."
+      },
+      "raw": "```json\n{\n  \"answer\": \"BI-RADS 4\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"suspicious irregular mass\", \"tissue diagnosis\"],\n  \"brief_rationale\": \"The report describes a suspicious irregular mass and recommends tissue diagnosis, which corresponds to the BI-RADS 4 classification.\"\n}\n```",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_021",
+      "expected_class": 4,
+      "pred_class": 4,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.6666666666666666,
+      "anchor_hits": 2,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.85,
+      "target_ability": "standard_alignment",
+      "failure_mode": "suspicion_level_mapping",
+      "difficulty": "medium",
+      "confusion_risk": "4_vs_5",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 4",
+      "brief_rationale": "The report describes a suspicious irregular mass and recommends tissue diagnosis, which corresponds to the BI-RADS 4 classification.",
+      "rationale_anchor_terms_pred": [
+        "suspicious irregular mass",
+        "tissue diagnosis"
+      ],
+      "rationale_anchor_terms_expected": [
+        "suspicious irregular mass",
+        "tissue diagnosis",
+        "should be considered"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 4",
+      "birads_class": 4,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "suspicious irregular mass",
+        "tissue diagnosis",
+        "should be considered"
+      ],
+      "expected_lexical_signals": [
+        "irregular_shape",
+        "suspicious_abnormality",
+        "biopsy_recommended"
+      ]
+    },
+    "metadata": {
+      "target_ability": "standard_alignment",
+      "failure_mode": "suspicion_level_mapping",
+      "difficulty": "medium",
+      "confusion_risk": "4_vs_5",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_022",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nSusp lesion in the upper outer left breast with irregular margins; bx recommended. Overall assessment is suspicious and tissue diagnosis is advised.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 4\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"Susp lesion\", \"bx recommended\", \"suspicious\", \"tissue diagnosis is advised\"],\n  \"brief_rationale\": \"The report characterizes the lesion as suspicious and explicitly recommends a biopsy for tissue diagnosis, which aligns with BI-RADS 4.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 4,
+      "answer": "BI-RADS 4",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "Susp lesion",
+        "bx recommended",
+        "suspicious",
+        "tissue diagnosis is advised"
+      ],
+      "brief_rationale": "The report characterizes the lesion as suspicious and explicitly recommends a biopsy for tissue diagnosis, which aligns with BI-RADS 4.",
+      "raw_obj": {
+        "answer": "BI-RADS 4",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "Susp lesion",
+          "bx recommended",
+          "suspicious",
+          "tissue diagnosis is advised"
+        ],
+        "brief_rationale": "The report characterizes the lesion as suspicious and explicitly recommends a biopsy for tissue diagnosis, which aligns with BI-RADS 4."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 4\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"Susp lesion\", \"bx recommended\", \"suspicious\", \"tissue diagnosis is advised\"],\n  \"brief_rationale\": \"The report characterizes the lesion as suspicious and explicitly recommends a biopsy for tissue diagnosis, which aligns with BI-RADS 4.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_022",
+      "expected_class": 4,
+      "pred_class": 4,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 1.0,
+      "anchor_hits": 3,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.9,
+      "target_ability": "surface_stability",
+      "failure_mode": "surface_variation",
+      "difficulty": "medium",
+      "confusion_risk": "4_vs_5",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 4",
+      "brief_rationale": "The report characterizes the lesion as suspicious and explicitly recommends a biopsy for tissue diagnosis, which aligns with BI-RADS 4.",
+      "rationale_anchor_terms_pred": [
+        "Susp lesion",
+        "bx recommended",
+        "suspicious",
+        "tissue diagnosis is advised"
+      ],
+      "rationale_anchor_terms_expected": [
+        "susp lesion",
+        "bx recommended",
+        "tissue diagnosis"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 4",
+      "birads_class": 4,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "susp lesion",
+        "bx recommended",
+        "tissue diagnosis"
+      ],
+      "expected_lexical_signals": [
+        "suspicious_abnormality",
+        "irregular_shape",
+        "biopsy_recommended"
+      ]
+    },
+    "metadata": {
+      "target_ability": "surface_stability",
+      "failure_mode": "surface_variation",
+      "difficulty": "medium",
+      "confusion_risk": "4_vs_5",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_023",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nThis lesion is not biopsy-proven, but a suspicious irregular mass persists on diagnostic imaging. Tissue diagnosis is recommended.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 4\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"suspicious irregular mass\",\n    \"tissue diagnosis is recommended\"\n  ],\n  \"brief_rationale\": \"A suspicious irregular mass that requires tissue diagnosis matches the criteria for BI-RADS 4.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 4,
+      "answer": "BI-RADS 4",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "suspicious irregular mass",
+        "tissue diagnosis is recommended"
+      ],
+      "brief_rationale": "A suspicious irregular mass that requires tissue diagnosis matches the criteria for BI-RADS 4.",
+      "raw_obj": {
+        "answer": "BI-RADS 4",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "suspicious irregular mass",
+          "tissue diagnosis is recommended"
+        ],
+        "brief_rationale": "A suspicious irregular mass that requires tissue diagnosis matches the criteria for BI-RADS 4."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 4\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"suspicious irregular mass\",\n    \"tissue diagnosis is recommended\"\n  ],\n  \"brief_rationale\": \"A suspicious irregular mass that requires tissue diagnosis matches the criteria for BI-RADS 4.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_023",
+      "expected_class": 4,
+      "pred_class": 4,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.6666666666666666,
+      "anchor_hits": 2,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.85,
+      "target_ability": "negation_handling",
+      "failure_mode": "not_proven_equals_not_suspicious",
+      "difficulty": "medium",
+      "confusion_risk": "4_vs_5",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 4",
+      "brief_rationale": "A suspicious irregular mass that requires tissue diagnosis matches the criteria for BI-RADS 4.",
+      "rationale_anchor_terms_pred": [
+        "suspicious irregular mass",
+        "tissue diagnosis is recommended"
+      ],
+      "rationale_anchor_terms_expected": [
+        "not biopsy-proven",
+        "suspicious irregular mass",
+        "tissue diagnosis is recommended"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 4",
+      "birads_class": 4,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "not biopsy-proven",
+        "suspicious irregular mass",
+        "tissue diagnosis is recommended"
+      ],
+      "expected_lexical_signals": [
+        "suspicious_abnormality",
+        "irregular_shape",
+        "biopsy_recommended"
+      ]
+    },
+    "metadata": {
+      "target_ability": "negation_handling",
+      "failure_mode": "not_proven_equals_not_suspicious",
+      "difficulty": "medium",
+      "confusion_risk": "4_vs_5",
+      "semantic_density": "medium",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_024",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nAn irregular mass with grouped suspicious calcifications is present. Biopsy is recommended, although the report does not describe the finding as highly suggestive of malignancy.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "```json\n{\n  \"answer\": \"BI-RADS 4\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"irregular mass\", \"suspicious calcifications\", \"Biopsy is recommended\"],\n  \"brief_rationale\": \"Suspicious findings including an irregular mass and calcifications with a recommendation for biopsy correspond to BI-RADS 4.\"\n}\n```",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 4,
+      "answer": "BI-RADS 4",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "irregular mass",
+        "suspicious calcifications",
+        "Biopsy is recommended"
+      ],
+      "brief_rationale": "Suspicious findings including an irregular mass and calcifications with a recommendation for biopsy correspond to BI-RADS 4.",
+      "raw_obj": {
+        "answer": "BI-RADS 4",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "irregular mass",
+          "suspicious calcifications",
+          "Biopsy is recommended"
+        ],
+        "brief_rationale": "Suspicious findings including an irregular mass and calcifications with a recommendation for biopsy correspond to BI-RADS 4."
+      },
+      "raw": "```json\n{\n  \"answer\": \"BI-RADS 4\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"irregular mass\", \"suspicious calcifications\", \"Biopsy is recommended\"],\n  \"brief_rationale\": \"Suspicious findings including an irregular mass and calcifications with a recommendation for biopsy correspond to BI-RADS 4.\"\n}\n```",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_024",
+      "expected_class": 4,
+      "pred_class": 4,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.6666666666666666,
+      "anchor_hits": 2,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.85,
+      "target_ability": "calibration_boundary_reasoning",
+      "failure_mode": "overescalation_to_5",
+      "difficulty": "hard",
+      "confusion_risk": "4_vs_5",
+      "semantic_density": "high",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 4",
+      "brief_rationale": "Suspicious findings including an irregular mass and calcifications with a recommendation for biopsy correspond to BI-RADS 4.",
+      "rationale_anchor_terms_pred": [
+        "irregular mass",
+        "suspicious calcifications",
+        "Biopsy is recommended"
+      ],
+      "rationale_anchor_terms_expected": [
+        "irregular mass",
+        "grouped suspicious calcifications",
+        "biopsy is recommended"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 4",
+      "birads_class": 4,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "irregular mass",
+        "grouped suspicious calcifications",
+        "biopsy is recommended"
+      ],
+      "expected_lexical_signals": [
+        "irregular_shape",
+        "suspicious_calcifications",
+        "biopsy_recommended"
+      ]
+    },
+    "metadata": {
+      "target_ability": "calibration_boundary_reasoning",
+      "failure_mode": "overescalation_to_5",
+      "difficulty": "hard",
+      "confusion_risk": "4_vs_5",
+      "semantic_density": "high",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_025",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nArchitectural distortion is present with an associated irregular mass and grouped pleomorphic calcifications. The overall finding is suspicious, and biopsy should be considered.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 4\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"suspicious\",\n    \"biopsy should be considered\"\n  ],\n  \"brief_rationale\": \"The report explicitly describes the findings as suspicious and recommends a biopsy, which aligns with the definition of BI-RADS 4.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 4,
+      "answer": "BI-RADS 4",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "suspicious",
+        "biopsy should be considered"
+      ],
+      "brief_rationale": "The report explicitly describes the findings as suspicious and recommends a biopsy, which aligns with the definition of BI-RADS 4.",
+      "raw_obj": {
+        "answer": "BI-RADS 4",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "suspicious",
+          "biopsy should be considered"
+        ],
+        "brief_rationale": "The report explicitly describes the findings as suspicious and recommends a biopsy, which aligns with the definition of BI-RADS 4."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 4\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"suspicious\",\n    \"biopsy should be considered\"\n  ],\n  \"brief_rationale\": \"The report explicitly describes the findings as suspicious and recommends a biopsy, which aligns with the definition of BI-RADS 4.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_025",
+      "expected_class": 4,
+      "pred_class": 4,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "medium",
+      "confidence_pred": "high",
+      "confidence_match": 0,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.3333333333333333,
+      "anchor_hits": 1,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.8,
+      "target_ability": "semantic_density_generalization",
+      "failure_mode": "malignancy_language_overread",
+      "difficulty": "hard",
+      "confusion_risk": "4_vs_5",
+      "semantic_density": "high",
+      "calibration_expectation": "medium_confidence",
+      "answer_raw": "BI-RADS 4",
+      "brief_rationale": "The report explicitly describes the findings as suspicious and recommends a biopsy, which aligns with the definition of BI-RADS 4.",
+      "rationale_anchor_terms_pred": [
+        "suspicious",
+        "biopsy should be considered"
+      ],
+      "rationale_anchor_terms_expected": [
+        "architectural distortion",
+        "irregular mass",
+        "biopsy should be considered"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 4",
+      "birads_class": 4,
+      "confidence_expected_band": "medium",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "architectural distortion",
+        "irregular mass",
+        "biopsy should be considered"
+      ],
+      "expected_lexical_signals": [
+        "architectural_distortion",
+        "irregular_shape",
+        "pleomorphic_calcifications",
+        "biopsy_recommended"
+      ]
+    },
+    "metadata": {
+      "target_ability": "semantic_density_generalization",
+      "failure_mode": "malignancy_language_overread",
+      "difficulty": "hard",
+      "confusion_risk": "4_vs_5",
+      "semantic_density": "high",
+      "calibration_expectation": "medium_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_026",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nThere is a spiculated mass in the upper outer breast, highly suggestive of malignancy. BI-RADS 5.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "```json\n{\n  \"answer\": \"BI-RADS 5\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"spiculated mass\", \"highly suggestive of malignancy\", \"BI-RADS 5\"],\n  \"brief_rationale\": \"The report explicitly identifies a spiculated mass highly suggestive of malignancy and provides a BI-RADS 5 assessment.\"\n}\n```",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 5,
+      "answer": "BI-RADS 5",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "spiculated mass",
+        "highly suggestive of malignancy",
+        "BI-RADS 5"
+      ],
+      "brief_rationale": "The report explicitly identifies a spiculated mass highly suggestive of malignancy and provides a BI-RADS 5 assessment.",
+      "raw_obj": {
+        "answer": "BI-RADS 5",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "spiculated mass",
+          "highly suggestive of malignancy",
+          "BI-RADS 5"
+        ],
+        "brief_rationale": "The report explicitly identifies a spiculated mass highly suggestive of malignancy and provides a BI-RADS 5 assessment."
+      },
+      "raw": "```json\n{\n  \"answer\": \"BI-RADS 5\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"spiculated mass\", \"highly suggestive of malignancy\", \"BI-RADS 5\"],\n  \"brief_rationale\": \"The report explicitly identifies a spiculated mass highly suggestive of malignancy and provides a BI-RADS 5 assessment.\"\n}\n```",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_026",
+      "expected_class": 5,
+      "pred_class": 5,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "high",
+      "confidence_pred": "high",
+      "confidence_match": 1,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 1.0,
+      "anchor_hits": 3,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 1.0,
+      "target_ability": "standard_alignment",
+      "failure_mode": "high_suspicion_mapping",
+      "difficulty": "medium",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence",
+      "answer_raw": "BI-RADS 5",
+      "brief_rationale": "The report explicitly identifies a spiculated mass highly suggestive of malignancy and provides a BI-RADS 5 assessment.",
+      "rationale_anchor_terms_pred": [
+        "spiculated mass",
+        "highly suggestive of malignancy",
+        "BI-RADS 5"
+      ],
+      "rationale_anchor_terms_expected": [
+        "spiculated mass",
+        "highly suggestive of malignancy",
+        "BI-RADS 5"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 5",
+      "birads_class": 5,
+      "confidence_expected_band": "high",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "spiculated mass",
+        "highly suggestive of malignancy",
+        "BI-RADS 5"
+      ],
+      "expected_lexical_signals": [
+        "spiculated_margin",
+        "high_suspicion",
+        "explicit_birads_5"
+      ]
+    },
+    "metadata": {
+      "target_ability": "standard_alignment",
+      "failure_mode": "high_suspicion_mapping",
+      "difficulty": "medium",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_027",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nHighly susp irreg mass with spic margins is seen in the breast. Overall impression: birads5 lesion.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "```json\n{\n  \"answer\": \"BI-RADS 5\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"birads5\", \"Highly susp\", \"irreg mass\", \"spic margins\"],\n  \"brief_rationale\": \"The report explicitly states an overall impression of BI-RADS 5 and describes highly suspicious features including an irregular mass with spiculated margins.\"\n}\n```",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 5,
+      "answer": "BI-RADS 5",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "birads5",
+        "Highly susp",
+        "irreg mass",
+        "spic margins"
+      ],
+      "brief_rationale": "The report explicitly states an overall impression of BI-RADS 5 and describes highly suspicious features including an irregular mass with spiculated margins.",
+      "raw_obj": {
+        "answer": "BI-RADS 5",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "birads5",
+          "Highly susp",
+          "irreg mass",
+          "spic margins"
+        ],
+        "brief_rationale": "The report explicitly states an overall impression of BI-RADS 5 and describes highly suspicious features including an irregular mass with spiculated margins."
+      },
+      "raw": "```json\n{\n  \"answer\": \"BI-RADS 5\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"birads5\", \"Highly susp\", \"irreg mass\", \"spic margins\"],\n  \"brief_rationale\": \"The report explicitly states an overall impression of BI-RADS 5 and describes highly suspicious features including an irregular mass with spiculated margins.\"\n}\n```",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_027",
+      "expected_class": 5,
+      "pred_class": 5,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "high",
+      "confidence_pred": "high",
+      "confidence_match": 1,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.6666666666666666,
+      "anchor_hits": 2,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.95,
+      "target_ability": "surface_stability",
+      "failure_mode": "surface_variation",
+      "difficulty": "medium",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence",
+      "answer_raw": "BI-RADS 5",
+      "brief_rationale": "The report explicitly states an overall impression of BI-RADS 5 and describes highly suspicious features including an irregular mass with spiculated margins.",
+      "rationale_anchor_terms_pred": [
+        "birads5",
+        "Highly susp",
+        "irreg mass",
+        "spic margins"
+      ],
+      "rationale_anchor_terms_expected": [
+        "highly susp",
+        "spic margins",
+        "birads5 lesion"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 5",
+      "birads_class": 5,
+      "confidence_expected_band": "high",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "highly susp",
+        "spic margins",
+        "birads5 lesion"
+      ],
+      "expected_lexical_signals": [
+        "spiculated_margin",
+        "irregular_shape",
+        "high_suspicion",
+        "explicit_birads_5"
+      ]
+    },
+    "metadata": {
+      "target_ability": "surface_stability",
+      "failure_mode": "surface_variation",
+      "difficulty": "medium",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_028",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nThe lesion is not biopsy-proven at this time, but it remains highly suspicious, with a spiculated irregular mass and associated malignant-appearing features on imaging.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 5\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"highly suspicious\",\n    \"spiculated irregular mass\",\n    \"malignant-appearing\"\n  ],\n  \"brief_rationale\": \"The report describes a highly suspicious, spiculated irregular mass with malignant features that has not yet been biopsy-proven, which is characteristic of BI-RADS 5.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 5,
+      "answer": "BI-RADS 5",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "highly suspicious",
+        "spiculated irregular mass",
+        "malignant-appearing"
+      ],
+      "brief_rationale": "The report describes a highly suspicious, spiculated irregular mass with malignant features that has not yet been biopsy-proven, which is characteristic of BI-RADS 5.",
+      "raw_obj": {
+        "answer": "BI-RADS 5",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "highly suspicious",
+          "spiculated irregular mass",
+          "malignant-appearing"
+        ],
+        "brief_rationale": "The report describes a highly suspicious, spiculated irregular mass with malignant features that has not yet been biopsy-proven, which is characteristic of BI-RADS 5."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 5\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"highly suspicious\",\n    \"spiculated irregular mass\",\n    \"malignant-appearing\"\n  ],\n  \"brief_rationale\": \"The report describes a highly suspicious, spiculated irregular mass with malignant features that has not yet been biopsy-proven, which is characteristic of BI-RADS 5.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_028",
+      "expected_class": 5,
+      "pred_class": 5,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "high",
+      "confidence_pred": "high",
+      "confidence_match": 1,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.6666666666666666,
+      "anchor_hits": 2,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.95,
+      "target_ability": "negation_handling",
+      "failure_mode": "not_biopsy_proven_to_4",
+      "difficulty": "hard",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "high",
+      "calibration_expectation": "high_confidence",
+      "answer_raw": "BI-RADS 5",
+      "brief_rationale": "The report describes a highly suspicious, spiculated irregular mass with malignant features that has not yet been biopsy-proven, which is characteristic of BI-RADS 5.",
+      "rationale_anchor_terms_pred": [
+        "highly suspicious",
+        "spiculated irregular mass",
+        "malignant-appearing"
+      ],
+      "rationale_anchor_terms_expected": [
+        "not biopsy-proven",
+        "highly suspicious",
+        "spiculated irregular mass"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 5",
+      "birads_class": 5,
+      "confidence_expected_band": "high",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "not biopsy-proven",
+        "highly suspicious",
+        "spiculated irregular mass"
+      ],
+      "expected_lexical_signals": [
+        "spiculated_margin",
+        "irregular_shape",
+        "high_suspicion"
+      ]
+    },
+    "metadata": {
+      "target_ability": "negation_handling",
+      "failure_mode": "not_biopsy_proven_to_4",
+      "difficulty": "hard",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "high",
+      "calibration_expectation": "high_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_029",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nThe imaging finding is highly suggestive of malignancy, with an irregular spiculated mass. Tissue diagnosis is pending and no prior biopsy confirmation is yet available.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 5\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"highly suggestive of malignancy\", \"irregular spiculated mass\"],\n  \"brief_rationale\": \"The report explicitly states the finding is highly suggestive of malignancy and describes an irregular spiculated mass without prior biopsy confirmation.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 5,
+      "answer": "BI-RADS 5",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "highly suggestive of malignancy",
+        "irregular spiculated mass"
+      ],
+      "brief_rationale": "The report explicitly states the finding is highly suggestive of malignancy and describes an irregular spiculated mass without prior biopsy confirmation.",
+      "raw_obj": {
+        "answer": "BI-RADS 5",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "highly suggestive of malignancy",
+          "irregular spiculated mass"
+        ],
+        "brief_rationale": "The report explicitly states the finding is highly suggestive of malignancy and describes an irregular spiculated mass without prior biopsy confirmation."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 5\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"highly suggestive of malignancy\", \"irregular spiculated mass\"],\n  \"brief_rationale\": \"The report explicitly states the finding is highly suggestive of malignancy and describes an irregular spiculated mass without prior biopsy confirmation.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_029",
+      "expected_class": 5,
+      "pred_class": 5,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "high",
+      "confidence_pred": "high",
+      "confidence_match": 1,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.6666666666666666,
+      "anchor_hits": 2,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.95,
+      "target_ability": "calibration_boundary_reasoning",
+      "failure_mode": "premature_upgrade_to_6",
+      "difficulty": "hard",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "high",
+      "calibration_expectation": "high_confidence",
+      "answer_raw": "BI-RADS 5",
+      "brief_rationale": "The report explicitly states the finding is highly suggestive of malignancy and describes an irregular spiculated mass without prior biopsy confirmation.",
+      "rationale_anchor_terms_pred": [
+        "highly suggestive of malignancy",
+        "irregular spiculated mass"
+      ],
+      "rationale_anchor_terms_expected": [
+        "highly suggestive of malignancy",
+        "irregular spiculated mass",
+        "tissue diagnosis is pending"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 5",
+      "birads_class": 5,
+      "confidence_expected_band": "high",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "highly suggestive of malignancy",
+        "irregular spiculated mass",
+        "tissue diagnosis is pending"
+      ],
+      "expected_lexical_signals": [
+        "spiculated_margin",
+        "irregular_shape",
+        "high_suspicion"
+      ]
+    },
+    "metadata": {
+      "target_ability": "calibration_boundary_reasoning",
+      "failure_mode": "premature_upgrade_to_6",
+      "difficulty": "hard",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "high",
+      "calibration_expectation": "high_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_030",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nThere is a spiculated irregular mass with associated pleomorphic calcifications and subtle nipple retraction. The overall appearance is highly suggestive of malignancy.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "```json\n{\n  \"answer\": \"BI-RADS 5\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"highly suggestive of malignancy\", \"spiculated irregular mass\", \"pleomorphic calcifications\"],\n  \"brief_rationale\": \"The report explicitly states the findings are highly suggestive of malignancy, which defines the BI-RADS 5 category.\"\n}\n```",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 5,
+      "answer": "BI-RADS 5",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "highly suggestive of malignancy",
+        "spiculated irregular mass",
+        "pleomorphic calcifications"
+      ],
+      "brief_rationale": "The report explicitly states the findings are highly suggestive of malignancy, which defines the BI-RADS 5 category.",
+      "raw_obj": {
+        "answer": "BI-RADS 5",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "highly suggestive of malignancy",
+          "spiculated irregular mass",
+          "pleomorphic calcifications"
+        ],
+        "brief_rationale": "The report explicitly states the findings are highly suggestive of malignancy, which defines the BI-RADS 5 category."
+      },
+      "raw": "```json\n{\n  \"answer\": \"BI-RADS 5\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"highly suggestive of malignancy\", \"spiculated irregular mass\", \"pleomorphic calcifications\"],\n  \"brief_rationale\": \"The report explicitly states the findings are highly suggestive of malignancy, which defines the BI-RADS 5 category.\"\n}\n```",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_030",
+      "expected_class": 5,
+      "pred_class": 5,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "high",
+      "confidence_pred": "high",
+      "confidence_match": 1,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 1.0,
+      "anchor_hits": 3,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 1.0,
+      "target_ability": "semantic_density_generalization",
+      "failure_mode": "history_overprojection",
+      "difficulty": "hard",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "high",
+      "calibration_expectation": "high_confidence",
+      "answer_raw": "BI-RADS 5",
+      "brief_rationale": "The report explicitly states the findings are highly suggestive of malignancy, which defines the BI-RADS 5 category.",
+      "rationale_anchor_terms_pred": [
+        "highly suggestive of malignancy",
+        "spiculated irregular mass",
+        "pleomorphic calcifications"
+      ],
+      "rationale_anchor_terms_expected": [
+        "spiculated irregular mass",
+        "pleomorphic calcifications",
+        "highly suggestive of malignancy"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 5",
+      "birads_class": 5,
+      "confidence_expected_band": "high",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "spiculated irregular mass",
+        "pleomorphic calcifications",
+        "highly suggestive of malignancy"
+      ],
+      "expected_lexical_signals": [
+        "spiculated_margin",
+        "irregular_shape",
+        "pleomorphic_calcifications",
+        "nipple_retraction",
+        "high_suspicion"
+      ]
+    },
+    "metadata": {
+      "target_ability": "semantic_density_generalization",
+      "failure_mode": "history_overprojection",
+      "difficulty": "hard",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "high",
+      "calibration_expectation": "high_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_031",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nKnown biopsy-proven malignancy is present in the left breast. BI-RADS 6.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 6\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"biopsy-proven malignancy\"\n  ],\n  \"brief_rationale\": \"The report explicitly identifies a known biopsy-proven malignancy, which corresponds to the definition of BI-RADS 6.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 6,
+      "answer": "BI-RADS 6",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "biopsy-proven malignancy"
+      ],
+      "brief_rationale": "The report explicitly identifies a known biopsy-proven malignancy, which corresponds to the definition of BI-RADS 6.",
+      "raw_obj": {
+        "answer": "BI-RADS 6",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "biopsy-proven malignancy"
+        ],
+        "brief_rationale": "The report explicitly identifies a known biopsy-proven malignancy, which corresponds to the definition of BI-RADS 6."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 6\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"biopsy-proven malignancy\"\n  ],\n  \"brief_rationale\": \"The report explicitly identifies a known biopsy-proven malignancy, which corresponds to the definition of BI-RADS 6.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_031",
+      "expected_class": 6,
+      "pred_class": 6,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "high",
+      "confidence_pred": "high",
+      "confidence_match": 1,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.6666666666666666,
+      "anchor_hits": 2,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.95,
+      "target_ability": "standard_alignment",
+      "failure_mode": "pathology_confirmation_mapping",
+      "difficulty": "medium",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence",
+      "answer_raw": "BI-RADS 6",
+      "brief_rationale": "The report explicitly identifies a known biopsy-proven malignancy, which corresponds to the definition of BI-RADS 6.",
+      "rationale_anchor_terms_pred": [
+        "biopsy-proven malignancy"
+      ],
+      "rationale_anchor_terms_expected": [
+        "known biopsy-proven malignancy",
+        "left breast",
+        "BI-RADS 6"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 6",
+      "birads_class": 6,
+      "confidence_expected_band": "high",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "known biopsy-proven malignancy",
+        "left breast",
+        "BI-RADS 6"
+      ],
+      "expected_lexical_signals": [
+        "known_biopsy_proven_malignancy",
+        "explicit_birads_6"
+      ]
+    },
+    "metadata": {
+      "target_ability": "standard_alignment",
+      "failure_mode": "pathology_confirmation_mapping",
+      "difficulty": "medium",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_032",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nBx-proven ca in the left breast; known malignancy. Overall assessment corresponds to birads6.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 6\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"Bx-proven ca\",\n    \"known malignancy\",\n    \"birads6\"\n  ],\n  \"brief_rationale\": \"The report explicitly states a biopsy-proven cancer and assigns an assessment of BI-RADS 6.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 6,
+      "answer": "BI-RADS 6",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "Bx-proven ca",
+        "known malignancy",
+        "birads6"
+      ],
+      "brief_rationale": "The report explicitly states a biopsy-proven cancer and assigns an assessment of BI-RADS 6.",
+      "raw_obj": {
+        "answer": "BI-RADS 6",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "Bx-proven ca",
+          "known malignancy",
+          "birads6"
+        ],
+        "brief_rationale": "The report explicitly states a biopsy-proven cancer and assigns an assessment of BI-RADS 6."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 6\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"Bx-proven ca\",\n    \"known malignancy\",\n    \"birads6\"\n  ],\n  \"brief_rationale\": \"The report explicitly states a biopsy-proven cancer and assigns an assessment of BI-RADS 6.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_032",
+      "expected_class": 6,
+      "pred_class": 6,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "high",
+      "confidence_pred": "high",
+      "confidence_match": 1,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 1.0,
+      "anchor_hits": 3,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 1.0,
+      "target_ability": "surface_stability",
+      "failure_mode": "surface_variation",
+      "difficulty": "medium",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence",
+      "answer_raw": "BI-RADS 6",
+      "brief_rationale": "The report explicitly states a biopsy-proven cancer and assigns an assessment of BI-RADS 6.",
+      "rationale_anchor_terms_pred": [
+        "Bx-proven ca",
+        "known malignancy",
+        "birads6"
+      ],
+      "rationale_anchor_terms_expected": [
+        "bx-proven ca",
+        "known malignancy",
+        "birads6"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 6",
+      "birads_class": 6,
+      "confidence_expected_band": "high",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "bx-proven ca",
+        "known malignancy",
+        "birads6"
+      ],
+      "expected_lexical_signals": [
+        "known_biopsy_proven_malignancy",
+        "explicit_birads_6"
+      ]
+    },
+    "metadata": {
+      "target_ability": "surface_stability",
+      "failure_mode": "surface_variation",
+      "difficulty": "medium",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "medium",
+      "calibration_expectation": "high_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_033",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nNo suspicious lesion is seen in the contralateral breast. In the left breast, there is known biopsy-proven malignancy with persistent imaging abnormality at the indexed site.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 6\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"known biopsy-proven malignancy\",\n    \"persistent imaging abnormality\"\n  ],\n  \"brief_rationale\": \"The report explicitly states there is a known biopsy-proven malignancy in the left breast.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 6,
+      "answer": "BI-RADS 6",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "known biopsy-proven malignancy",
+        "persistent imaging abnormality"
+      ],
+      "brief_rationale": "The report explicitly states there is a known biopsy-proven malignancy in the left breast.",
+      "raw_obj": {
+        "answer": "BI-RADS 6",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "known biopsy-proven malignancy",
+          "persistent imaging abnormality"
+        ],
+        "brief_rationale": "The report explicitly states there is a known biopsy-proven malignancy in the left breast."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 6\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\n    \"known biopsy-proven malignancy\",\n    \"persistent imaging abnormality\"\n  ],\n  \"brief_rationale\": \"The report explicitly states there is a known biopsy-proven malignancy in the left breast.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_033",
+      "expected_class": 6,
+      "pred_class": 6,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "high",
+      "confidence_pred": "high",
+      "confidence_match": 1,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.3333333333333333,
+      "anchor_hits": 1,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.9,
+      "target_ability": "negation_handling",
+      "failure_mode": "local_negation_global_downgrade",
+      "difficulty": "hard",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "high",
+      "calibration_expectation": "high_confidence",
+      "answer_raw": "BI-RADS 6",
+      "brief_rationale": "The report explicitly states there is a known biopsy-proven malignancy in the left breast.",
+      "rationale_anchor_terms_pred": [
+        "known biopsy-proven malignancy",
+        "persistent imaging abnormality"
+      ],
+      "rationale_anchor_terms_expected": [
+        "contralateral breast",
+        "known biopsy-proven malignancy",
+        "indexed site"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 6",
+      "birads_class": 6,
+      "confidence_expected_band": "high",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "contralateral breast",
+        "known biopsy-proven malignancy",
+        "indexed site"
+      ],
+      "expected_lexical_signals": [
+        "known_biopsy_proven_malignancy",
+        "persistent_abnormality"
+      ]
+    },
+    "metadata": {
+      "target_ability": "negation_handling",
+      "failure_mode": "local_negation_global_downgrade",
+      "difficulty": "hard",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "high",
+      "calibration_expectation": "high_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_034",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nPathology-proven malignancy is documented, with a biopsy marker clip at the lesion site. Residual suspicious mass remains visible on imaging.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "{\n  \"answer\": \"BI-RADS 6\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"Pathology-proven malignancy\", \"biopsy marker clip\"],\n  \"brief_rationale\": \"The report explicitly states the malignancy is biopsy-proven and documented.\"\n}",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 6,
+      "answer": "BI-RADS 6",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "Pathology-proven malignancy",
+        "biopsy marker clip"
+      ],
+      "brief_rationale": "The report explicitly states the malignancy is biopsy-proven and documented.",
+      "raw_obj": {
+        "answer": "BI-RADS 6",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "Pathology-proven malignancy",
+          "biopsy marker clip"
+        ],
+        "brief_rationale": "The report explicitly states the malignancy is biopsy-proven and documented."
+      },
+      "raw": "{\n  \"answer\": \"BI-RADS 6\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"Pathology-proven malignancy\", \"biopsy marker clip\"],\n  \"brief_rationale\": \"The report explicitly states the malignancy is biopsy-proven and documented.\"\n}",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_034",
+      "expected_class": 6,
+      "pred_class": 6,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "high",
+      "confidence_pred": "high",
+      "confidence_match": 1,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.6666666666666666,
+      "anchor_hits": 2,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.95,
+      "target_ability": "calibration_boundary_reasoning",
+      "failure_mode": "underuse_of_histology_signal",
+      "difficulty": "hard",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "high",
+      "calibration_expectation": "high_confidence",
+      "answer_raw": "BI-RADS 6",
+      "brief_rationale": "The report explicitly states the malignancy is biopsy-proven and documented.",
+      "rationale_anchor_terms_pred": [
+        "Pathology-proven malignancy",
+        "biopsy marker clip"
+      ],
+      "rationale_anchor_terms_expected": [
+        "pathology-proven malignancy",
+        "biopsy marker clip",
+        "residual suspicious mass"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 6",
+      "birads_class": 6,
+      "confidence_expected_band": "high",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "pathology-proven malignancy",
+        "biopsy marker clip",
+        "residual suspicious mass"
+      ],
+      "expected_lexical_signals": [
+        "known_biopsy_proven_malignancy",
+        "biopsy_marker_clip",
+        "persistent_abnormality"
+      ]
+    },
+    "metadata": {
+      "target_ability": "calibration_boundary_reasoning",
+      "failure_mode": "underuse_of_histology_signal",
+      "difficulty": "hard",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "high",
+      "calibration_expectation": "high_confidence"
+    }
+  },
+  {
+    "id": "mammo_ext35_035",
+    "model_name": "kbench_llm_mammo35_full35",
+    "run_mode": "real",
+    "prompt": "You are evaluating a mammography report excerpt for BI-RADS classification.\n\nReturn strict JSON only, with this schema:\n{\n  \"answer\": \"BI-RADS 0\",\n  \"confidence\": \"low|medium|high\",\n  \"defer\": true|false,\n  \"rationale_anchor_terms\": [\"term1\", \"term2\"],\n  \"brief_rationale\": \"one short sentence\"\n}\n\nUse exactly one answer among:\nBI-RADS 0, BI-RADS 1, BI-RADS 2, BI-RADS 3, BI-RADS 4, BI-RADS 5, BI-RADS 6.\n\nClinical report:\nBiopsy-proven invasive carcinoma is present with a post-biopsy clip marking the lesion. Imaging-pathology findings are concordant, and the patient is being referred for surgical and oncologic treatment planning.\n\nRules:\n- Ground the answer only in the report text.\n- Do not invent pathology.\n- BI-RADS 0 = incomplete assessment / additional imaging needed.\n- BI-RADS 1 = negative.\n- BI-RADS 2 = benign.\n- BI-RADS 3 = probably benign / short-interval follow-up.\n- BI-RADS 4 = suspicious abnormality / biopsy should be considered.\n- BI-RADS 5 = highly suggestive of malignancy.\n- BI-RADS 6 = known biopsy-proven malignancy.\n- Negated suspicious findings must not increase suspicion.\n- If malignant disease is already biopsy-proven, prefer BI-RADS 6 over BI-RADS 5.\n- If the report is incomplete or requires additional imaging before final assessment, prefer BI-RADS 0.",
+    "raw_output": "```json\n{\n  \"answer\": \"BI-RADS 6\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"Biopsy-proven invasive carcinoma\", \"post-biopsy clip\"],\n  \"brief_rationale\": \"The report explicitly identifies a known biopsy-proven invasive carcinoma with a marking clip.\"\n}\n```",
+    "parsed": {
+      "parse_ok": true,
+      "pred_class": 6,
+      "answer": "BI-RADS 6",
+      "confidence": "high",
+      "defer": false,
+      "rationale_anchor_terms": [
+        "Biopsy-proven invasive carcinoma",
+        "post-biopsy clip"
+      ],
+      "brief_rationale": "The report explicitly identifies a known biopsy-proven invasive carcinoma with a marking clip.",
+      "raw_obj": {
+        "answer": "BI-RADS 6",
+        "confidence": "high",
+        "defer": false,
+        "rationale_anchor_terms": [
+          "Biopsy-proven invasive carcinoma",
+          "post-biopsy clip"
+        ],
+        "brief_rationale": "The report explicitly identifies a known biopsy-proven invasive carcinoma with a marking clip."
+      },
+      "raw": "```json\n{\n  \"answer\": \"BI-RADS 6\",\n  \"confidence\": \"high\",\n  \"defer\": false,\n  \"rationale_anchor_terms\": [\"Biopsy-proven invasive carcinoma\", \"post-biopsy clip\"],\n  \"brief_rationale\": \"The report explicitly identifies a known biopsy-proven invasive carcinoma with a marking clip.\"\n}\n```",
+      "parse_error": null
+    },
+    "score": {
+      "id": "mammo_ext35_035",
+      "expected_class": 6,
+      "pred_class": 6,
+      "exact": 1,
+      "severity_penalty": 0.0,
+      "confidence_expected": "high",
+      "confidence_pred": "high",
+      "confidence_match": 1,
+      "defer_expected": false,
+      "defer_pred": false,
+      "defer_match": 1,
+      "anchor_score": 0.3333333333333333,
+      "anchor_hits": 1,
+      "anchor_total": 3,
+      "parse_ok": 1,
+      "parse_error": null,
+      "composite_score": 0.9,
+      "target_ability": "semantic_density_generalization",
+      "failure_mode": "oncology_context_drop",
+      "difficulty": "hard",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "high",
+      "calibration_expectation": "high_confidence",
+      "answer_raw": "BI-RADS 6",
+      "brief_rationale": "The report explicitly identifies a known biopsy-proven invasive carcinoma with a marking clip.",
+      "rationale_anchor_terms_pred": [
+        "Biopsy-proven invasive carcinoma",
+        "post-biopsy clip"
+      ],
+      "rationale_anchor_terms_expected": [
+        "biopsy-proven invasive carcinoma",
+        "imaging-pathology findings are concordant",
+        "treatment planning"
+      ]
+    },
+    "expected": {
+      "answer": "BI-RADS 6",
+      "birads_class": 6,
+      "confidence_expected_band": "high",
+      "defer_expected": false,
+      "rationale_anchor_terms": [
+        "biopsy-proven invasive carcinoma",
+        "imaging-pathology findings are concordant",
+        "treatment planning"
+      ],
+      "expected_lexical_signals": [
+        "known_biopsy_proven_malignancy",
+        "biopsy_marker_clip",
+        "pathology_concordance",
+        "treatment_planning"
+      ]
+    },
+    "metadata": {
+      "target_ability": "semantic_density_generalization",
+      "failure_mode": "oncology_context_drop",
+      "difficulty": "hard",
+      "confusion_risk": "5_vs_6",
+      "semantic_density": "high",
+      "calibration_expectation": "high_confidence"
+    }
+  }
+]

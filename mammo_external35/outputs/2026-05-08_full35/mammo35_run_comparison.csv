@@ -1,0 +1,7 @@
+summary_file,model_name,n_cases,accuracy,macro_f1,composite,parse_failure_rate,severe_error_count,confidence_match_rate,anchor_mean_score,defer_match_rate
+mammo35_summary_kbench_llm_mammo35_full35.json,kbench_llm_mammo35_full35,35,1.0,1.0,0.9057142857142856,0.0,0,0.4857142857142857,0.7142857142857142,1.0
+mammo35_summary_kbench_llm_mammo35_smoke3.json,kbench_llm_mammo35_smoke3,3,1.0,0.14285714285714285,0.8833333333333333,0.0,0,0.0,0.8888888888888888,1.0
+mammo35_summary_kbench_llm_mammo35_smoke7_stratified.json,kbench_llm_mammo35_smoke7_stratified,7,1.0,1.0,0.9142857142857144,0.0,0,0.5714285714285714,0.7142857142857144,1.0
+mammo35_summary_mock_gold.json,mock_gold,35,1.0,1.0,1.0,0.0,0,1.0,1.0,1.0
+mammo35_summary_mock_gold_run_model_smoke.json,mock_gold_run_model_smoke,35,1.0,1.0,1.0,0.0,0,1.0,1.0,1.0
+mammo35_summary_mock_noisy_parseable.json,mock_noisy_parseable,35,1.0,1.0,0.95,0.0,0,1.0,0.6666666666666667,1.0

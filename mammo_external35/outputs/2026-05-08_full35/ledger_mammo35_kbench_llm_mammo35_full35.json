@@ -1,0 +1,227 @@
+{
+  "ledger_type": "CRSB_MAMMO35_MODEL_EVAL",
+  "timestamp_utc": "2026-05-08T15:53:54+00:00",
+  "project": "CRSB V2 / Mammo External35",
+  "eval_mode": "mammo_external35",
+  "task_slug_mammo35": "crsb_v2_mammo_external35_eval",
+  "task_version_mammo35": "v1",
+  "model_name": "kbench_llm_mammo35_full35",
+  "mock_mode": null,
+  "input": {
+    "mammo35_json_path": "/kaggle/input/datasets/josluizlunaxavier/mammo-synth-crsb-ext35-v1-080526/mammo_crsb_external35_v1.json",
+    "mammo35_json_sha256": "731e90cd85c3636eec591f131e20bf5e62c6a0c63c6eea4db052b57de9652c7d",
+    "n_cases": 35
+  },
+  "summary": {
+    "model_name": "kbench_llm_mammo35_full35",
+    "n_cases": 35,
+    "accuracy_valid_outputs": 1.0,
+    "macro_f1_valid_outputs": 1.0,
+    "mean_composite_score": 0.9057142857142856,
+    "mean_severity_penalty": 0.0,
+    "severe_error_count": 0,
+    "parse_failure_rate": 0.0,
+    "parse_ok_rate": 1.0,
+    "confidence_match_rate": 0.4857142857142857,
+    "defer_match_rate": 1.0,
+    "anchor_mean_score": 0.7142857142857142,
+    "confusion_matrix_labels": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "confusion_matrix_0_6": [
+      [
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        5,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        5,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5
+      ]
+    ],
+    "undercall_456_to_0123_count": 0,
+    "overcall_12_to_56_count": 0,
+    "birads5_pred_as_6_count": 0,
+    "birads6_pred_as_5_count": 0,
+    "birads0_missed_count": 0,
+    "by_target_ability": {
+      "surface_stability": 0.9428571428571428,
+      "standard_alignment": 0.9285714285714286,
+      "negation_handling": 0.9071428571428571,
+      "semantic_density_generalization": 0.8785714285714287,
+      "calibration_boundary_reasoning": 0.8714285714285713
+    },
+    "by_failure_mode": {
+      "benign_signal_understanding": 1.0,
+      "history_overprojection": 1.0,
+      "high_suspicion_mapping": 1.0,
+      "normal_case_understanding": 1.0,
+      "negation_scope_error": 1.0,
+      "negation_with_positive_benign_entity": 0.95,
+      "pathology_confirmation_mapping": 0.95,
+      "underuse_of_histology_signal": 0.95,
+      "premature_upgrade_to_6": 0.95,
+      "context_noise_overweight": 0.95,
+      "not_biopsy_proven_to_4": 0.95,
+      "surface_variation": 0.9428571428571428,
+      "benign_undercall_to_1": 0.9,
+      "negation_misread": 0.9,
+      "oncology_context_drop": 0.9,
+      "local_negation_global_downgrade": 0.9,
+      "standard_phrase_interpretation": 0.85,
+      "followup_phrase_interpretation": 0.85,
+      "history_misread": 0.85,
+      "boundary_underestimation": 0.85,
+      "history_followup_drop": 0.85,
+      "suspicion_level_mapping": 0.85,
+      "overescalation_to_5": 0.85,
+      "not_proven_equals_not_suspicious": 0.85,
+      "context_drop": 0.8,
+      "malignancy_language_overread": 0.8,
+      "density_overcall": 0.8,
+      "negation_false_normalization": 0.8,
+      "premature_normalization": 0.8
+    },
+    "by_confusion_risk": {
+      "1_vs_2": 0.9555555555555555,
+      "5_vs_6": 0.9550000000000001,
+      "0_vs_1": 0.85,
+      "3_vs_4": 0.85,
+      "4_vs_5": 0.85,
+      "2_vs_3": 0.8400000000000001
+    },
+    "by_difficulty": {
+      "easy": 0.9583333333333334,
+      "hard": 0.9125,
+      "medium": 0.888095238095238
+    },
+    "by_semantic_density": {
+      "medium": 0.9108695652173913,
+      "high": 0.8958333333333334
+    },
+    "counts_by_target_ability": {
+      "standard_alignment": 7,
+      "surface_stability": 7,
+      "negation_handling": 7,
+      "calibration_boundary_reasoning": 7,
+      "semantic_density_generalization": 7
+    },
+    "counts_by_failure_mode": {
+      "surface_variation": 7,
+      "standard_phrase_interpretation": 1,
+      "negation_misread": 1,
+      "premature_normalization": 1,
+      "context_drop": 1,
+      "normal_case_understanding": 1,
+      "negation_scope_error": 1,
+      "density_overcall": 1,
+      "context_noise_overweight": 1,
+      "benign_signal_understanding": 1,
+      "negation_with_positive_benign_entity": 1,
+      "benign_undercall_to_1": 1,
+      "history_misread": 1,
+      "followup_phrase_interpretation": 1,
+      "negation_false_normalization": 1,
+      "boundary_underestimation": 1,
+      "history_followup_drop": 1,
+      "suspicion_level_mapping": 1,
+      "not_proven_equals_not_suspicious": 1,
+      "overescalation_to_5": 1,
+      "malignancy_language_overread": 1,
+      "high_suspicion_mapping": 1,
+      "not_biopsy_proven_to_4": 1,
+      "premature_upgrade_to_6": 1,
+      "history_overprojection": 1,
+      "pathology_confirmation_mapping": 1,
+      "local_negation_global_downgrade": 1,
+      "underuse_of_histology_signal": 1,
+      "oncology_context_drop": 1
+    },
+    "counts_by_confusion_risk": {
+      "5_vs_6": 10,
+      "1_vs_2": 9,
+      "0_vs_1": 5,
+      "2_vs_3": 5,
+      "4_vs_5": 5,
+      "3_vs_4": 1
+    },
+    "error_rows_preview": [],
+    "severe_error_rows_preview": []
+  },
+  "exported_paths": {
+    "summary_path": "/kaggle/working/crsb_mammo35_outputs/mammo35_summary_kbench_llm_mammo35_full35.json",
+    "records_path": "/kaggle/working/crsb_mammo35_outputs/mammo35_records_kbench_llm_mammo35_full35.json",
+    "scores_csv_path": "/kaggle/working/crsb_mammo35_outputs/mammo35_scores_kbench_llm_mammo35_full35.csv",
+    "scores_jsonl_path": "/kaggle/working/crsb_mammo35_outputs/mammo35_scores_kbench_llm_mammo35_full35.jsonl"
+  },
+  "runtime_context": {
+    "python_version": "3.11.15",
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.41",
+    "cwd": "/kaggle/working",
+    "kaggle_kernel_run_type": "Interactive",
+    "kaggle_url_base": "https://www.kaggle.com",
+    "kaggle_user": null
+  },
+  "interpretation_note": "Mammo External35 is a clinical semantic-stability probe inside the CRSB family. It evaluates BI-RADS semantic alignment, calibration, negation handling, surface stability, and clinically dangerous under/over-calls. It is not a full replacement for the original CRSB V2/r58 metacognitive benchmark.",
+  "governance_note": "No expected_output, expected_lexical_signals, target_ability, or failure_mode are exposed inside the model prompt. These fields are used only for scoring and audit."
+}

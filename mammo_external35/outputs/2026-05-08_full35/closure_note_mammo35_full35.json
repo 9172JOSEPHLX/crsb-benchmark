@@ -1,0 +1,41 @@
+{
+  "closure_type": "CRSB_MAMMO35_NOTEBOOK_CLOSURE",
+  "timestamp_utc": "2026-05-08T16:56:54+00:00",
+  "notebook": "new-benchmark-task-f1439-35-mammo-adapter-070526 (2).ipynb",
+  "notebook_role": "hybrid f1439 notebook plus Mammo External35 adapter-070526",
+  "final_model_name": "kbench_llm_mammo35_full35",
+  "dataset_sha256": "731e90cd85c3636eec591f131e20bf5e62c6a0c63c6eea4db052b57de9652c7d",
+  "status": "PASS_STRONG",
+  "decision": {
+    "keep_as": "external_clinical_semantic_stability_probe",
+    "do_not_update_task": true,
+    "do_not_overwrite": "crsb_v2_metacognitive_eval_f1439_r58.v3",
+    "reason": "Mammo35 is currently an external probe/adapter baseline, not the official r58 task. Updating the Kaggle task now could mix the Mammo35 probe with the CRSB r58 benchmark."
+  },
+  "final_results": {
+    "n_cases": 35,
+    "accuracy_valid_outputs": 1.0,
+    "macro_f1_valid_outputs": 1.0,
+    "mean_composite_score": 0.9057142857142856,
+    "parse_failure_rate": 0.0,
+    "severe_error_count": 0,
+    "confidence_match_rate": 0.4857142857142857,
+    "anchor_mean_score": 0.7142857142857142,
+    "defer_match_rate": 1.0
+  },
+  "interpretation": "PASS STRONG. The real full35 run achieved perfect BI-RADS classification with zero severe clinical errors and zero parse failures. The residual CRSB gap comes from confidence overstatement and incomplete rationale-anchor coverage, especially on medium-confidence and context-rich cases.",
+  "downloaded_artifacts": [
+    "new-benchmark-task-f1439-35-mammo-adapter-070526 (2).ipynb",
+    "mammo35_summary_kbench_llm_mammo35_full35.json",
+    "mammo35_records_kbench_llm_mammo35_full35.json",
+    "mammo35_scores_kbench_llm_mammo35_full35.csv",
+    "mammo35_scores_kbench_llm_mammo35_full35.jsonl",
+    "ledger_mammo35_kbench_llm_mammo35_full35.json",
+    "mammo35_run_comparison.csv"
+  ],
+  "local_kaggle_paths": {
+    "output_dir": "/kaggle/working/crsb_mammo35_outputs",
+    "ledger_path": "/kaggle/working/crsb_mammo35_outputs/ledger_mammo35_kbench_llm_mammo35_full35.json",
+    "comparison_path": "/kaggle/working/crsb_mammo35_outputs/mammo35_run_comparison.csv"
+  }
+}
